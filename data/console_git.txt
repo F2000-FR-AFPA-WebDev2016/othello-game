@@ -1,0 +1,100 @@
+
+stagiaire@POR7087284 MINGW32 ~
+$ ll
+total 4189
+drwxr-xr-x 1 stagiaire 197121       0 nov.  16  2015 AppData/
+lrwxrwxrwx 1 stagiaire 197121      34 nov.  16  2015 'Application Data' -> /c/Us                                                                                                                                                                                               ers/stagiaire/AppData/Roaming/
+drwxr-xr-x 1 stagiaire 197121       0 déc.  11 08:39 Contacts/
+lrwxrwxrwx 1 stagiaire 197121      60 nov.  16  2015 Cookies -> /c/Users/stagiai                                                                                                                                                                                               re/AppData/Roaming/Microsoft/Windows/Cookies/
+drwxr-xr-x 1 stagiaire 197121       0 avr.  20 15:47 Desktop/
+drwxr-xr-x 1 stagiaire 197121       0 mai   18 09:28 Documents/
+drwxr-xr-x 1 stagiaire 197121       0 mai   17 16:49 Downloads/
+drwxr-xr-x 1 stagiaire 197121       0 nov.  20  2015 Favorites/
+drwxr-xr-x 1 stagiaire 197121       0 mai   17 14:11 jennifer/
+drwxr-xr-x 1 stagiaire 197121       0 nov.  20  2015 Links/
+lrwxrwxrwx 1 stagiaire 197121      32 nov.  16  2015 'Local Settings' -> /c/User                                                                                                                                                                                               s/stagiaire/AppData/Local/
+lrwxrwxrwx 1 stagiaire 197121      63 nov.  16  2015 'Menu Démarrer' -> '/c/User                                                                                                                                                                                               s/stagiaire/AppData/Roaming/Microsoft/Windows/Start Menu'/
+lrwxrwxrwx 1 stagiaire 197121      28 nov.  16  2015 'Mes documents' -> /c/Users                                                                                                                                                                                               /stagiaire/Documents/
+lrwxrwxrwx 1 stagiaire 197121      62 nov.  16  2015 Modèles -> /c/Users/stagiai                                                                                                                                                                                               re/AppData/Roaming/Microsoft/Windows/Templates/
+drwxr-xr-x 1 stagiaire 197121       0 nov.  20  2015 Music/
+-rw-r--r-- 1 stagiaire 197121 2883584 mai   24 15:20 NTUSER.DAT
+-rw-r--r-- 1 stagiaire 197121  262144 mai   24 15:20 ntuser.dat.LOG1
+-rw-r--r-- 1 stagiaire 197121       0 nov.  16  2015 ntuser.dat.LOG2
+-rw-r--r-- 1 stagiaire 197121   65536 nov.  17  2015 NTUSER.DAT{6cced2f1-6e01-11                                                                                                                                                                                               de-8bed-001e0bcd1824}.TM.blf
+-rw-r--r-- 1 stagiaire 197121  524288 nov.  17  2015 NTUSER.DAT{6cced2f1-6e01-11                                                                                                                                                                                               de-8bed-001e0bcd1824}.TMContainer00000000000000000001.regtrans-ms
+-rw-r--r-- 1 stagiaire 197121  524288 nov.  17  2015 NTUSER.DAT{6cced2f1-6e01-11                                                                                                                                                                                               de-8bed-001e0bcd1824}.TMContainer00000000000000000002.regtrans-ms
+-rw-r--r-- 1 stagiaire 197121      20 nov.  16  2015 ntuser.ini
+lrwxrwxrwx 1 stagiaire 197121      59 nov.  16  2015 Recent -> /c/Users/stagiair                                                                                                                                                                                               e/AppData/Roaming/Microsoft/Windows/Recent/
+drwxr-xr-x 1 stagiaire 197121       0 déc.   7 09:53 Searches/
+lrwxrwxrwx 1 stagiaire 197121      59 nov.  16  2015 SendTo -> /c/Users/stagiair                                                                                                                                                                                               e/AppData/Roaming/Microsoft/Windows/SendTo/
+drwxr-xr-x 1 stagiaire 197121       0 nov.  20  2015 Videos/
+lrwxrwxrwx 1 stagiaire 197121      70 nov.  16  2015 'Voisinage d'\''impression'                                                                                                                                                                                                -> '/c/Users/stagiaire/AppData/Roaming/Microsoft/Windows/Printer Shortcuts'/
+lrwxrwxrwx 1 stagiaire 197121      70 nov.  16  2015 'Voisinage réseau' -> '/c/U                                                                                                                                                                                               sers/stagiaire/AppData/Roaming/Microsoft/Windows/Network Shortcuts'/
+
+stagiaire@POR7087284 MINGW32 ~
+$ cd ..
+
+stagiaire@POR7087284 MINGW32 /c/Users
+$ cd ..
+
+stagiaire@POR7087284 MINGW32 /c
+$ cd Utilitaires/EasyPHP/www/test_project2.2/
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www/test_project2.2
+$ cd .
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www/test_project2.2
+$ cd ..
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www
+$ git clone https://github.com/F2000-FR-AFPA-WebDev2016/othello-game.git
+Cloning into 'othello-game'...
+remote: Counting objects: 19, done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 19 (delta 4), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (19/19), done.
+Checking connectivity... done.
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www
+$ ll othello-game/
+total 57
+-rw-r--r-- 1 stagiaire 197121 57344 mai   24 15:21 Projet.doc
+-rw-r--r-- 1 stagiaire 197121   409 mai   24 15:21 README.md
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www
+$ cd othello-game/
+g
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www/othello-game (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Projet.doc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ~$Projet.doc
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www/othello-game (master)
+$ git commit Projet.doc -m "Nouvelle version, nom classe modifié"
+[master 4a1997e] Nouvelle version, nom classe modifié
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www/othello-game (master)
+$ git push
+Counting objects: 3, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.81 KiB | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To https://github.com/F2000-FR-AFPA-WebDev2016/othello-game.git
+   f4abf83..4a1997e  master -> master
+
+stagiaire@POR7087284 MINGW32 /c/Utilitaires/EasyPHP/www/othello-game (master)
+$
