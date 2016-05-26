@@ -1,0 +1,5 @@
+afpa_othello_game:
+    resource: "@AfpaOthelloGameBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
