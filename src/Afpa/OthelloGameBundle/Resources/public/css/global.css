@@ -1,3 +1,13 @@
-td{
-    border: collapse;
+table{
+    border-collapse: collapse;
+    vertical-align: middle;
+    margin: auto;
+}
+th {
+    width: 20px;
+}
+td {
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
 }
