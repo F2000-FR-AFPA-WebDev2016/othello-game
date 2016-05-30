@@ -1,21 +1,50 @@
 /*Header*/
 
+header {
+    height : 100px;
+    text-align: center;
+}
 #logo {
-    width : 10%;
-    height : auto;
-    float: left;
+    height : 100px;
+    position:absolute;
+    top:10px;
+    left:10px;
 }
 
 h1 {
     text-align: center;
+    height : 10px;
+    font-family : Georgia;
 }
 
+h1#start {
+    font-size : 30px;
+}
+
+h1#othello {
+    font-size : 40px;
+}
+
+#form {
+    position:absolute;
+    top:75px;
+    right:25px;
+
+}
+
+/*Body*/
+
 body {
-    background-image: url("../images/moquette.jpg");
+    background-image: url("../images/fond_vert.jpeg");
 }
 
 /*Board*/
-
+#board {
+    top : 30px;
+    position:relative;
+    width: 380px;
+    margin: auto;
+}
 table{
     border-collapse: collapse;
     vertical-align: middle;
@@ -29,28 +58,37 @@ td {
     width: 40px;
     height: 40px;
 }
-
-img{
+td img {
     width: 40px;
     height: 40px;
 }
-/*CSS ViewEndGame :*/
 
-div.window {
-    width : 500px; height: 200px;
-}
+/*CSS ViewEndGame :*/
 button.button {
     padding: 0.5em 1em;
     text-decoration: none;
+    height : auto;
+    margin : 2px;
 }
-div#effect {
-    width : 240px;
+#popup {
+    position : absolute;
+    top:123px;
+    left:46px;
+    text-align: center;
+    width : 300px;
+    margin:auto;
     height : 135px;
     padding : 0.4em;
-    position : relative;
 }
-div#effect h3 {
+#popup h3 {
     margin: 0;
     padding: 0.4em;
     text-align: center;
+}
+
+/*Footer*/
+
+footer {
+    text-align : right;
+    margin-right : 10px;
 }

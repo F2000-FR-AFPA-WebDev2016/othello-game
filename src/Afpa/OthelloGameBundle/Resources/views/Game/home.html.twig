@@ -4,36 +4,50 @@
 
 {% block body %}
 
-    <h1>Welcome at the Othello Game:home page</h1>
+    <h1 id="start">Commencez la partie $oPlayer</h1>
 
-    <table>
-        <tr>
-            <th></th>
-            <th>A</th>
-            <th>B</th>
-            <th>C</th>
-            <th>D</th>
-            <th>E</th>
-            <th>F</th>
-            <th>G</th>
-            <th>H</th>
-        </tr>
-        {% set numLigne = 1 %}
-        {% for ligne in board %}
+    <div id="board">
+        <table>
             <tr>
-                <th>{{ numLigne }}</th>
-                    {% for col in ligne %}
-                    <td id="L0C0">
-                        {% if col != '' %}
-                            <img src="{{asset("bundles/afpaothellogame/images/" ~ col)}}"/>
-                        {% endif %}
-                    </td>
-                {% endfor %}
+                <th></th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+                <th>F</th>
+                <th>G</th>
+                <th>H</th>
             </tr>
-            {% set numLigne = numLigne+1 %}
-        {% endfor %}
+            {% set numLigne = 1 %}
+            {% for ligne in board %}
+                <tr>
+                    <th>{{ numLigne }}</th>
+                        {% for col in ligne %}
+                        <td id="L0C0">
+                            {% if col != '' %}
+                                <img src="{{asset("bundles/afpaothellogame/images/" ~ col)}}"/>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% set numLigne = numLigne+1 %}
+            {% endfor %}
+        </table>
 
-    </table>
+        <!--Pop-up fin de la partie : à placer dans une boucle)-->
+        <div id="popup" class="ui-widget-content ui-corner-all">
+            <!--if { <h3 class="ui-widget-header ui-corner-all">Vous avez gagner $oPl</h3> } else { }-->
+            <h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
+            <p>
+                Voulez-vous rejouez?
+            </p>
+            <!--Redirection vers une nouvelle partie-->
+            <!--<a href={# path('') #}--><button type="button" class="button">Oui</button><!--</a>-->
+            <!--Quitter partie = ferme $_Session-->
+            <!--<a href={# path('') #}--><button type="button" class="button">Non</button><!--</a>-->
+        </div>
+    </div>
 
 {% endblock %}
 
