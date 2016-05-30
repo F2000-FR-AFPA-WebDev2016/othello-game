@@ -1,6 +1,6 @@
 <?php
 
-namespace Afpa\OthelloGameBundle\Model;
+namespace Afpa\OthelloGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Board {
-
+class User
+{
     /**
      * @var integer
      *
@@ -41,14 +41,15 @@ class Board {
      * @ORM\Column(name="password", type="string", length=50)
      */
     private $password;
-    public static $aBoard = array();
+
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -58,18 +59,20 @@ class Board {
      * @param string $login
      * @return User
      */
-    public function setLogin($login) {
+    public function setLogin($login)
+    {
         $this->login = $login;
-
+    
         return $this;
     }
 
     /**
      * Get login
      *
-     * @return string
+     * @return string 
      */
-    public function getLogin() {
+    public function getLogin()
+    {
         return $this->login;
     }
 
@@ -79,18 +82,20 @@ class Board {
      * @param string $pseudo
      * @return User
      */
-    public function setPseudo($pseudo) {
+    public function setPseudo($pseudo)
+    {
         $this->pseudo = $pseudo;
-
+    
         return $this;
     }
 
     /**
      * Get pseudo
      *
-     * @return string
+     * @return string 
      */
-    public function getPseudo() {
+    public function getPseudo()
+    {
         return $this->pseudo;
     }
 
@@ -100,19 +105,20 @@ class Board {
      * @param string $password
      * @return User
      */
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
-
+    
         return $this;
     }
 
     /**
      * Get password
      *
-     * @return string
+     * @return string 
      */
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
-
 }

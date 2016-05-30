@@ -14,6 +14,7 @@ class GameController extends Controller {
      * @Template()
      */
     public function homeAction() {
+
         return array();
     }
 
