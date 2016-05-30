@@ -7,7 +7,7 @@ $(function () {
 
 
     $("#effect").hide();
-    //setTimeout(runEffect, 2000);
+    setTimeout(runEffect, 2000);
 });
 
 
