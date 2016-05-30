@@ -14,8 +14,11 @@ class GameController extends Controller {
      * @Template()
      */
     public function homeAction() {
+        $oBoard = new \Afpa\OthelloGameBundle\Model\Board();
 
-        return array();
+        return array(
+            'board' => $oBoard->getBoard()
+        );
     }
 
 }
