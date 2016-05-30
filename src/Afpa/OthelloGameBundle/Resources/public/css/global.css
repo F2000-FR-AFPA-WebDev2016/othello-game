@@ -1,3 +1,21 @@
+/*Header*/
+
+#logo {
+    width : 10%;
+    height : auto;
+    float: left;
+}
+
+h1 {
+    text-align: center;
+}
+
+body {
+    background-image: url("../images/moquette.jpg");
+}
+
+/*Board*/
+
 table{
     border-collapse: collapse;
     vertical-align: middle;
@@ -10,4 +28,25 @@ td {
     border: 1px solid black;
     width: 40px;
     height: 40px;
+}
+
+/*CSS ViewEndGame :*/
+
+div.window {
+    width : 500px; height: 200px;
+}
+button.button {
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+div#effect {
+    width : 240px;
+    height : 135px;
+    padding : 0.4em;
+    position : relative;
+}
+div#effect h3 {
+    margin: 0;
+    padding: 0.4em;
+    text-align: center;
 }

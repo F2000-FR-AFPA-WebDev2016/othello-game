@@ -6,13 +6,17 @@
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{asset('bundles/afpaothellogame/css/global.css')}}" />
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body>
     <header>
-        <h1>Othello</h1>
-        <!--<a href={# path('login') #}--><button type="button">login</button><!--</a>-->
-        <!--<a href={# path('register') #}--><button type="button">New player</button><!--</a>-->
-        <img src="{{asset("bundles/afpaothellogame/images/4pions.jpg")}}"/>
+        <div id="head">
+            <h1>Othello</h1>
+            <img id="logo" src="{{asset("bundles/afpaothellogame/images/4pions.jpg")}}"/>
+            <!--<a href={# path('login') #}--><button type="button" id="login">login</button><!--</a>-->
+            <!--<a href={# path('register') #}--><button type="button" id="newPlayer">New player</button><!--</a>-->
+        </div>
     </header>
 
 {% block body %}{% endblock %}
@@ -22,6 +26,8 @@
 </footer>
 
 {% block javascripts %}{% endblock %}
-<script type="text/javascript" src="{{asset ('bundles/afpaothellogame/js/leslibconcerner.js')}}"></script>
+<script type="text/javascript" src="{{asset ('bundles/afpaothellogame/js/jquery-2.2.4.min.js')}}"></script>
+<script type="text/javascript" src="{{asset ('bundles/afpaothellogame/js/functions.js')}}"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>
 </html>

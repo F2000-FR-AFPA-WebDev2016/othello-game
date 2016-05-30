@@ -17,4 +17,12 @@ class GameController extends Controller {
         return array();
     }
 
+    /**
+     * @Route("/end", name="endGame")
+     * @Template()
+     */
+    public function endGameAction() {
+        return array();
+    }
+
 }
