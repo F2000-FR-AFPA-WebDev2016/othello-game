@@ -9,9 +9,19 @@
 </head>
 <body>
     <header>
-
+        <h1>Othello</h1>
+        <!--<a href={# path('login') #}--><button type="button">login</button><!--</a>-->
+        <!--<a href={# path('register') #}--><button type="button">New player</button><!--</a>-->
+        <img src="{{asset("bundles/afpaothellogame/images/4pions.jpg")}}"/>
     </header>
+
 {% block body %}{% endblock %}
+
+<footer>
+    <p>Copyright © 2016</p>
+</footer>
+
 {% block javascripts %}{% endblock %}
+<script type="text/javascript" src="{{asset ('bundles/afpaothellogame/js/leslibconcerner.js')}}"></script>
 </body>
 </html>
