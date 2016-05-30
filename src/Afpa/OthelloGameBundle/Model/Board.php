@@ -1,124 +1,38 @@
 <?php
 
-namespace Afpa\OthelloGameBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+namespace Afpa\OthelloGameBundle\Model;
 
 /**
- * User
- *
- * @ORM\Table()
- * @ORM\Entity
+ * Board
  */
-class User
-{
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+class Board {
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=50)
-     */
-    private $login;
+    protected $aBoard;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=50)
-     */
-    private $pseudo;
+    public function __construct() {
+        // initialisation du plateau
+        $this->aBoard = array();
+        for ($i = 0; $i < 8; $i++) {
+            $this->aBoard[$i] = array();
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=50)
-     */
-    private $password;
+            for ($j = 0; $j < 8; $j++) {
+                $this->aBoard[$i][$j] = NULL;
+            }
+        }
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
+        // insertion des pions de départ
+        $this->aBoard[3][3] = new WhitePawn;
+        $this->aBoard[3][4] = new BlackPawn;
+        $this->aBoard[4][3] = new BlackPawn;
+        $this->aBoard[4][4] = new WhitePawn;
     }
 
-    /**
-     * Set login
-     *
-     * @param string $login
-     * @return User
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-    
-        return $this;
+    public function getBoard() {
+        return $this->aBoard;
     }
 
-    /**
-     * Get login
-     *
-     * @return string 
-     */
-    public function getLogin()
-    {
-        return $this->login;
+    public function setBoard($aBoard) {
+        $this->aBoard = $aBoard;
     }
 
-    /**
-     * Set pseudo
-     *
-     * @param string $pseudo
-     * @return User
-     */
-    public function setPseudo($pseudo)
-    {
-        $this->pseudo = $pseudo;
-    
-        return $this;
-    }
-
-    /**
-     * Get pseudo
-     *
-     * @return string 
-     */
-    public function getPseudo()
-    {
-        return $this->pseudo;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
 }
