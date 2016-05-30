@@ -8,6 +8,7 @@ namespace Afpa\OthelloGameBundle\Model;
 class Board {
 
     protected $aBoard;
+    protected $playerTurn;
 
     public function __construct() {
         // initialisation du plateau
@@ -21,10 +22,20 @@ class Board {
         }
 
         // insertion des pions de départ
-        $this->aBoard[3][3] = new WhitePawn;
-        $this->aBoard[3][4] = new BlackPawn;
-        $this->aBoard[4][3] = new BlackPawn;
-        $this->aBoard[4][4] = new WhitePawn;
+        $this->aBoard[3][3] = new Pawn(Pawn::TYPE_WHITE);
+        $this->aBoard[3][4] = new Pawn(Pawn::TYPE_BLACK);
+        $this->aBoard[4][3] = new Pawn(Pawn::TYPE_BLACK);
+        $this->aBoard[4][4] = new Pawn(Pawn::TYPE_WHITE);
+
+        $this->playerTurn = Pawn::TYPE_BLACK;
+    }
+
+    public function getPlayerTurn() {
+        if ($this->playerTurn == Pawn::TYPE_BLACK) {
+            return 'Joueur Noir';
+        } else {
+            return 'Joueur Blanc';
+        }
     }
 
     public function getBoard() {

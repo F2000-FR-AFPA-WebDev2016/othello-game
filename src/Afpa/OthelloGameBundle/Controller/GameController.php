@@ -17,16 +17,9 @@ class GameController extends Controller {
         $oBoard = new \Afpa\OthelloGameBundle\Model\Board();
 
         return array(
-            'board' => $oBoard->getBoard()
+            'board' => $oBoard->getBoard(),
+            'player' => $oBoard->getPlayerTurn()
         );
-    }
-
-    /**
-     * @Route("/end", name="endGame")
-     * @Template()
-     */
-    public function endGameAction() {
-        return array();
     }
 
 }
