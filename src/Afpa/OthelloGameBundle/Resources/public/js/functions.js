@@ -1,11 +1,9 @@
 $(function () {
     //Executer l'effet
     function runEffect() {
-        $("#effect").show('scale', null, 500);
+        $("#popup").show('scale', null, 500);
     }
-
-
-    $("#effect").hide();
+    $("#popup").hide();
     //setTimeout(runEffect, 2000);
     
     
