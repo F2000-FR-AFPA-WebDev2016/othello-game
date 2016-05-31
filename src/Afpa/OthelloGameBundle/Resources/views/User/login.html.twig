@@ -1,9 +1,15 @@
-{% extends "AfpaOthelloGame::layout.html.twig" %}
+{% extends "AfpaOthelloGameBundle::layout.html.twig" %}
 
-{% block title %}AfpaOthelloGameBundle:User:login{% endblock %}
+{% block title %}AfpaOthelloGameBundle:Game:home{% endblock %}
 
 {% block body %}
-    <h1>Welcome at the User:login page</h1>
+    <h1>Connectez-vous :</h1>
+
+    {{form_errors(login)}}
+    <form method="POST">
+        {{form_widget(login)}}
+        <input class="envoyer" type="submit"/>
+    </form>
 
 
 {% endblock %}{# empty Twig template #}

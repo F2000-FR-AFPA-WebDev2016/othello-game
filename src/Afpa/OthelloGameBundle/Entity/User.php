@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class User
-{
+class User {
+
     /**
      * @var integer
      *
@@ -31,25 +31,16 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=50)
-     */
-    private $pseudo;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="password", type="string", length=50)
      */
     private $password;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -59,44 +50,19 @@ class User
      * @param string $login
      * @return User
      */
-    public function setLogin($login)
-    {
+    public function setLogin($login) {
         $this->login = $login;
-    
+
         return $this;
     }
 
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
-    public function getLogin()
-    {
+    public function getLogin() {
         return $this->login;
-    }
-
-    /**
-     * Set pseudo
-     *
-     * @param string $pseudo
-     * @return User
-     */
-    public function setPseudo($pseudo)
-    {
-        $this->pseudo = $pseudo;
-    
-        return $this;
-    }
-
-    /**
-     * Get pseudo
-     *
-     * @return string 
-     */
-    public function getPseudo()
-    {
-        return $this->pseudo;
     }
 
     /**
@@ -105,20 +71,26 @@ class User
      * @param string $password
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
-    
+
         return $this;
     }
 
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
+
+    //verif password :
+    public function verifAuth($password) {
+        return $this->password == $password;
+    }
+
 }
+
+?>
