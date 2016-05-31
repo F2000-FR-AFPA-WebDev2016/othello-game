@@ -15,7 +15,6 @@ $(function () {
         // test : est-ce que la case est vide
         if ($(this).html().indexOf("img") == -1){
            // si oui, appel AJAX obtenir les x,y
-           console.log('case libre'); 
            $.ajax({
 		async: true,
 		type: 'POST',
@@ -43,8 +42,8 @@ $(function () {
             async: true,
             type: 'POST',
             url: "game/view",
-            success:function(retour){
-                $('#game').html(retour); // rafraichi la DIV
+            success:function(view){
+                $('#game').html(view); // rafraichi la DIV
             },
         });
     }
@@ -53,6 +52,18 @@ $(function () {
         refresh();
     });
     
+    
+    
+   /* function reset(){
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: "",
+            
+        })
+        
+        
+    }*/
 });    
 
 

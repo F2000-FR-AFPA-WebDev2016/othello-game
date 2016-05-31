@@ -180,12 +180,18 @@ class Board {
     }
 
     public function doAction($x, $y) {
+        $bSuccess = 'error';
+
         // TODO.intégrer les actions de Martine.
-        $this->aBoard[$x][$y] = new Pawn($this->playerTurn);
-        $this->nextPlayer();
+        if (!$this->aBoard[$x][$y] instanceof Pawn) {
+            $this->aBoard[$x][$y] = new Pawn($this->playerTurn);
+
+            $this->nextPlayer();
+            $bSuccess = 'success';
+        }
 
         return array(
-            'status' => 'success'
+            'status' => $bSuccess,
         );
     }
 

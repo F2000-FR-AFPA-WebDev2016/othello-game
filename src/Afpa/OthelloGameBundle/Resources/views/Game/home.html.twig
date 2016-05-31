@@ -7,15 +7,15 @@
     <div id="game">
         {{ render(controller('AfpaOthelloGameBundle:Game:gameView')) }}
     </div>
+    <button id="resetBtn">Reset</button>
     
-    <button id="refreshBtn">Refresh</button>
 
     <!--Pop-up fin de la partie : à placer dans une boucle)-->
     <div id="popup" class="ui-widget-content ui-corner-all">
         <!--if { <h3 class="ui-widget-header ui-corner-all">Vous avez gagner $oPl</h3> } else { }-->
         <h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
         <p>
-            Voulez-vous rejouez?
+            Voulez-vous rejouer?
         </p>
         <!--Redirection vers une nouvelle partie-->
         <!--<a href={# path('') #}--><button type="button" class="button">Oui</button><!--</a>-->
