@@ -1,3 +1,4 @@
+
 <?php
 
 namespace Afpa\OthelloGameBundle\Model;
@@ -60,7 +61,7 @@ class Board {
         }
         $iNbPos = 8;
 
-        // calcul de i
+// calcul de i
         if ($l > 0) {
             $i = $l - 1;
         } else {
@@ -68,7 +69,7 @@ class Board {
             $iNbPos = $iNbPos - 3;
         }
 
-        // calcul de j
+// calcul de j
         if ($c > 0) {
             $j = $c - 1;
         } else {
@@ -178,6 +179,15 @@ class Board {
                 }
             }
         }
+    }
+
+    public function doAction($x, $y) {
+// TODO.intégrer les actions de Martine.
+
+
+        return array(
+            'status' => 'success'
+        );
     }
 
     public function getPlayerTurn() {
