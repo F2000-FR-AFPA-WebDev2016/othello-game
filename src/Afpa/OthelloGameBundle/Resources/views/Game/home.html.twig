@@ -4,49 +4,47 @@
 
 {% block body %}
 
-    <h1 id="start">Commencez la partie $oPlayer</h1>
+    <h1 id="start">Commencez la partie {{ player }}</h1>
 
-    <div id="board">
-        <table>
+    <table id="board">
+        <tr>
+            <th></th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+            <th>G</th>
+            <th>H</th>
+        </tr>
+        {% set numLigne = 1 %}
+        {% for x in 0..board|length-1 %}
             <tr>
-                <th></th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-                <th>F</th>
-                <th>G</th>
-                <th>H</th>
+                <th>{{ numLigne }}</th>
+                {% for y in 0..board[x]|length-1 %}
+                    <td id="L{{x}}C{{y}}" data-x="{{x}}" data-y="{{y}}">
+                        {% if board[x][y] != '' %}
+                            <img src="{{asset("bundles/afpaothellogame/images/" ~ board[x][y])}}"/>
+                        {% endif %}
+                    </td>
+                {% endfor %}
             </tr>
-            {% set numLigne = 1 %}
-            {% for ligne in board %}
-                <tr>
-                    <th>{{ numLigne }}</th>
-                        {% for col in ligne %}
-                        <td id="L0C0">
-                            {% if col != '' %}
-                                <img src="{{asset("bundles/afpaothellogame/images/" ~ col)}}"/>
-                            {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                {% set numLigne = numLigne+1 %}
-            {% endfor %}
-        </table>
+            {% set numLigne = numLigne+1 %}
+        {% endfor %}
+    </table>
 
-        <!--Pop-up fin de la partie : à placer dans une boucle)-->
-        <div id="popup" class="ui-widget-content ui-corner-all">
-            <!--if { <h3 class="ui-widget-header ui-corner-all">Vous avez gagner $oPl</h3> } else { }-->
-            <h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
-            <p>
-                Voulez-vous rejouez?
-            </p>
-            <!--Redirection vers une nouvelle partie-->
-            <!--<a href={# path('') #}--><button type="button" class="button">Oui</button><!--</a>-->
-            <!--Quitter partie = ferme $_Session-->
-            <!--<a href={# path('') #}--><button type="button" class="button">Non</button><!--</a>-->
-        </div>
+    <!--Pop-up fin de la partie : à placer dans une boucle)-->
+    <div id="popup" class="ui-widget-content ui-corner-all">
+        <!--if { <h3 class="ui-widget-header ui-corner-all">Vous avez gagner $oPl</h3> } else { }-->
+        <h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
+        <p>
+            Voulez-vous rejouez?
+        </p>
+        <!--Redirection vers une nouvelle partie-->
+        <!--<a href={# path('') #}--><button type="button" class="button">Oui</button><!--</a>-->
+        <!--Quitter partie = ferme $_Session-->
+        <!--<a href={# path('') #}--><button type="button" class="button">Non</button><!--</a>-->
     </div>
 
 {% endblock %}

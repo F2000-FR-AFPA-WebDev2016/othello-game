@@ -9,9 +9,10 @@ class Board {
 
     protected $aBoard;
     protected $aPossibleCases;
+    protected $playerTurn;
 
     public function __construct() {
-        // initialisation du plateau
+// initialisation du plateau
         $this->aBoard = array();
         for ($i = 0; $i < 8; $i++) {
             $this->aBoard[$i] = array();
@@ -21,13 +22,20 @@ class Board {
             }
         }
 
-        // insertion des pions de départ
-        $this->aBoard[3][3] = new WhitePawn;
-        $this->aBoard[3][4] = new BlackPawn;
-        $this->aBoard[4][3] = new BlackPawn;
-        $this->aBoard[4][4] = new WhitePawn;
+// insertion des pions de départ
+        /* $this->aBoard[3][3] = new WhitePawn;
+          $this->aBoard[3][4] = new BlackPawn;
+          $this->aBoard[4][3] = new BlackPawn;
+          $this->aBoard[4][4] = new WhitePawn; */
 
-        // initialisation du tableau des cases cliquables
+// initialisation du tableau des cases cliquables
+
+        $this->aBoard[3][3] = new Pawn(Pawn::TYPE_WHITE);
+        $this->aBoard[3][4] = new Pawn(Pawn::TYPE_BLACK);
+        $this->aBoard[4][3] = new Pawn(Pawn::TYPE_BLACK);
+        $this->aBoard[4][4] = new Pawn(Pawn::TYPE_WHITE);
+
+        $this->playerTurn = Pawn::TYPE_BLACK;
         $this->calculPossiblesCases();
     }
 
@@ -63,7 +71,9 @@ class Board {
 
         while ($l < 8) {
             while ($c < 8) {
-                if (IsPossibleAction($l, $c, ))
+                if (IsPossibleAction($l, $c)) {
+
+                }
             }
         }
     }
@@ -138,6 +148,14 @@ class Board {
             $i = $i + $PasL;
         }
         return $bPossible;
+    }
+
+    public function getPlayerTurn() {
+        if ($this->playerTurn == Pawn::TYPE_BLACK) {
+            return 'Joueur Noir';
+        } else {
+            return 'Joueur Blanc';
+        }
     }
 
     public function getBoard() {
