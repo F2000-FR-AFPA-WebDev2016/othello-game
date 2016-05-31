@@ -30,6 +30,15 @@ class Board {
         $this->playerTurn = Pawn::TYPE_BLACK;
     }
 
+    public function doAction($x, $y) {
+        // TODO.intégrer les actions de Martine.
+
+
+        return array(
+            'status' => 'success'
+        );
+    }
+
     public function getPlayerTurn() {
         if ($this->playerTurn == Pawn::TYPE_BLACK) {
             return 'Joueur Noir';
