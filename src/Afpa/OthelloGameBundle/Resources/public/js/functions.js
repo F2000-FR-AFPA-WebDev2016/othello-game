@@ -8,7 +8,7 @@ $(function () {
     //setTimeout(displayPopupEndGame, 2000);
 
 
-    $('#board td').click(function () {
+    $(document).on('click', '#board td', function () {
         //$(this).data(data-x);
         console.log($(this).data('x') + ' ' + $(this).data('y'));
 
@@ -34,7 +34,23 @@ $(function () {
             });
         }
     });
-});
+    
+    function refresh() {
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: "game/view",
+            success:function(retour){
+                $('#game').html(retour); // rafraichi la DIV
+            },
+        });
+    }
+    
+    $('#refreshBtn').click(function () {
+        refresh();
+    });
+    
+});    
 
 
 

@@ -1,0 +1,28 @@
+<h1 id="start">Commencez la partie {{ player }}</h1>
+<table id="board">
+    <tr>
+        <th></th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+    </tr>
+    {% set numLigne = 1 %}
+    {% for x in 0..board|length-1 %}
+        <tr>
+            <th>{{ numLigne }}</th>
+            {% for y in 0..board[x]|length-1 %}
+                <td id="L{{x}}C{{y}}" data-x="{{x}}" data-y="{{y}}">
+                    {% if board[x][y] != '' %}
+                        <img src="{{asset("bundles/afpaothellogame/images/" ~ board[x][y])}}"/>
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+        {% set numLigne = numLigne+1 %}
+    {% endfor %}
+</table>

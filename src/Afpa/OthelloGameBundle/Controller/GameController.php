@@ -26,6 +26,18 @@ class GameController extends Controller {
             $oSession->set('game', $oGame);
         }
 
+        return array();
+    }
+
+    /**
+     * @Route("/game/view", name="game")
+     * @Template()
+     */
+    public function gameViewAction(Request $request) {
+        //on garde en session le jeu
+        $oSession = $request->getSession();
+        $oGame = $oSession->get('game');
+
         return array(
             'board' => $oGame->getBoard(),
             'player' => $oGame->getPlayerTurn()
