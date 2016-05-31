@@ -16,6 +16,7 @@ class Pawn {
         $this->color = $color;
     }
 
+    // fct magique : __toString : methode affichage :
     public function __toString() {
         return ($this->color == self::TYPE_WHITE ) ? 'whitepawn.jpeg' : 'blackpawn.png';
     }
