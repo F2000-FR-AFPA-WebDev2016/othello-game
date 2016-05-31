@@ -12,7 +12,7 @@ class Board {
     protected $playerTurn;
 
     public function __construct() {
-// initialisation du plateau
+        // initialisation du plateau
         $this->aBoard = array();
         for ($i = 0; $i < 8; $i++) {
             $this->aBoard[$i] = array();
@@ -22,8 +22,7 @@ class Board {
             }
         }
 
-// initialisation du tableau des cases cliquables
-
+        // initialisation du tableau des cases cliquables
         $this->aBoard[3][3] = new Pawn(Pawn::TYPE_WHITE);
         $this->aBoard[3][4] = new Pawn(Pawn::TYPE_BLACK);
         $this->aBoard[4][3] = new Pawn(Pawn::TYPE_BLACK);
@@ -181,8 +180,9 @@ class Board {
     }
 
     public function doAction($x, $y) {
-// TODO.intégrer les actions de Martine.
-
+        // TODO.intégrer les actions de Martine.
+        $this->aBoard[$x][$y] = new Pawn($this->playerTurn);
+        $this->nextPlayer();
 
         return array(
             'status' => 'success'
@@ -194,6 +194,14 @@ class Board {
             return 'Black';
         } else {
             return 'White';
+        }
+    }
+
+    public function nextPlayer() {
+        if ($this->playerTurn == Pawn::TYPE_BLACK) {
+            $this->playerTurn = Pawn::TYPE_WHITE;
+        } else {
+            $this->playerTurn = Pawn::TYPE_BLACK;
         }
     }
 
