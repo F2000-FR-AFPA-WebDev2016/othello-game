@@ -30,6 +30,9 @@ $(function () {
                 },
 		success:function(data){
                     console.log(data);
+                    if(data.status == 'success') {
+                        refresh();
+                    }
                 }
             });
         }
