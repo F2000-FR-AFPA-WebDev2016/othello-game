@@ -64,7 +64,7 @@ aside {
     margin-left : 90px;
 }
 
-#aside p span {
+aside p span {
     font-size: 12px;
 }
 
@@ -110,8 +110,8 @@ button.button {
 }
 #popup {
     position : absolute;
-    top:330px;
-    left:536px;
+    top:373px;
+    left:530px;
     text-align: center;
     width : 300px;
     margin:auto;
