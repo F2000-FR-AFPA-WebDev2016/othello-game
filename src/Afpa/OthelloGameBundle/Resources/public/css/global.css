@@ -11,7 +11,7 @@ header {
     left:10px;
 }
 
-h1 {
+h1, h3 {
     text-align: center;
     height : 10px;
     font-family : Georgia;
@@ -36,6 +36,35 @@ h1#othello {
 
 body {
     background-image: url("../images/fond_vert.jpeg");
+}
+
+/*Aside*/
+
+#aside {
+    position : absolute;
+    width : 350px;
+    margin-right : 20px;
+    top:240px;
+    right:30px;
+    font-family : Georgia;
+}
+
+#rules {
+    text-decoration:none;
+    font-family : Georgia;
+    margin-left : 90px;
+}
+
+#aside p span {
+    font-size: 12px;
+}
+
+h3 {
+    margin-bottom: 30px;
+}
+
+a, span {
+    margin-top:20px;
 }
 
 /*Board*/
@@ -72,8 +101,8 @@ button.button {
 }
 #popup {
     position : absolute;
-    top:123px;
-    left:46px;
+    top:330px;
+    left:536px;
     text-align: center;
     width : 300px;
     margin:auto;
@@ -91,4 +120,5 @@ button.button {
 footer {
     text-align : right;
     margin-right : 10px;
+    font-family : Georgia;
 }
