@@ -3,8 +3,9 @@ $(function () {
     function displayPopupEndGame() {
         $("#popup").show('scale', null, 500);
     }
+
     $("#popup").hide();
-    //setTimeout(runEffect, 2000);
+    //setTimeout(displayPopupEndGame, 2000);
 });
 
 
