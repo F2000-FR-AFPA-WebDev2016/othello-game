@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Afpa\OthelloGameBundle\Model;
@@ -207,3 +206,5 @@ class Board {
     }
 
 }
+
+?>
