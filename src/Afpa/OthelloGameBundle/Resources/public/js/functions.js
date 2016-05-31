@@ -13,11 +13,13 @@ $(function () {
         console.log($(this).data('x') + ' ' + $(this).data('y'));
 
         // test : est-ce que la case est vide
-        // si oui, appel AJAX
-        if ($(this).html().indexOf("img") >= 0) {
-            console.log('case occupée');
-        } else {
-            console.log('case libre');
+        if ($(this).html().indexOf("img") >= 0){
+          console.log('case occupée');  
+        }
+            
+        else {
+           // si oui, appel AJAX
+           console.log('case libre'); 
         }
 
     });
