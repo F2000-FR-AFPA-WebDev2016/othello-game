@@ -18,6 +18,7 @@ $(function () {
         }
             
         else {
+           // si oui, appel AJAX
            console.log('case libre'); 
         }
             
