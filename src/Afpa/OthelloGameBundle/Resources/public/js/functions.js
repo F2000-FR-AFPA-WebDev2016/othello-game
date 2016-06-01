@@ -50,18 +50,22 @@ $(function () {
         refresh();
     });
 
+    //Bouton reset de partie à tout moment
+    function reset() {
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: "game/reset",
+            success: function () {
+                refresh();
+            }
 
+        });
+    }
 
-    /* function reset(){
-     $.ajax({
-     async: true,
-     type: 'POST',
-     url: "",
-
-     })
-
-
-     }*/
+    $('#resetBtn').click(function () {
+        reset();
+    });
 });
 
 
