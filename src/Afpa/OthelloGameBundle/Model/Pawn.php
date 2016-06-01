@@ -22,10 +22,10 @@ class Pawn {
     }
 
     public function reverse() {
-        if ($color == self::TYPE_WHITE) {
-            $color = self::TYPE_BLACK;
+        if ($this->color == self::TYPE_WHITE) {
+            $this->color = self::TYPE_BLACK;
         } else {
-            $color = self::TYPE_WHITE;
+            $this->color = self::TYPE_WHITE;
         }
     }
 

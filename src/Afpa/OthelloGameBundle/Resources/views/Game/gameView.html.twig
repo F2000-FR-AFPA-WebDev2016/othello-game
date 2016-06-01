@@ -14,13 +14,13 @@
         <th>H</th>
     </tr>
     {% set numLigne = 1 %}
-    {% for x in 0..board|length-1 %}
+    {% for l in 0..board|length-1 %}
         <tr>
             <th>{{ numLigne }}</th>
-                {% for y in 0..board[x]|length-1 %}
-                <td id="L{{x}}C{{y}}" data-x="{{x}}" data-y="{{y}}">
-                    {% if board[x][y] != '' %}
-                        <img src="{{asset("bundles/afpaothellogame/images/" ~ board[x][y])}}"/>
+                {% for c in 0..board[l]|length-1 %}
+                <td id="L{{l}}C{{c}}" data-l="{{l}}" data-c="{{c}}">
+                    {% if board[l][c] != '' %}
+                        <img src="{{asset("bundles/afpaothellogame/images/" ~ board[l][c])}}"/>
                     {% endif %}
                 </td>
             {% endfor %}
