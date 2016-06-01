@@ -21,7 +21,6 @@ class GameController extends Controller {
         $oSession = $request->getSession();
 
         $oGame = $oSession->get('game');
-        $oGame = null;
         if (!$oGame instanceof Board) {
             $oGame = new Board();
             $oSession->set('game', $oGame);
@@ -54,11 +53,22 @@ class GameController extends Controller {
         $oSession = $request->getSession();
         $oGame = $oSession->get('game');
 
-        $x = $request->get('x');
-        $y = $request->get('y');
+        $l = $request->get('l');
+        $c = $request->get('c');
 
-        $aData = $oGame->doAction($x, $y);
+        $aData = $oGame->doAction($l, $c);
         return new JsonResponse($aData);
+    }
+
+    /**
+     * @Route("/game/reset", name="reset")
+     * @Template()
+     */
+    public function gameResetAction(Request $request) {
+        $oSession = $request->getSession();
+        $oSession->set('game', new Board());
+
+        return new JsonResponse();
     }
 
 }

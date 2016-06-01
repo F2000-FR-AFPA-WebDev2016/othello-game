@@ -11,6 +11,8 @@ class Board {
     protected $aPossibleCases;
     protected $aDirection;
     protected $playerTurn;
+    protected $scoreWhite;
+    protected $scoreBlack;
 
     public function __construct() {
 // initialisation du plateau
@@ -31,7 +33,6 @@ class Board {
         $this->aBoard[4][4] = new Pawn(Pawn::TYPE_WHITE);
 
         $this->playerTurn = Pawn::TYPE_BLACK;
-        $this->aDirection = array();
         $this->calculPossiblesCases();
     }
 
@@ -41,43 +42,34 @@ class Board {
 
     public function calculPossiblesCases() {
         $this->aPossibleCases = array();
+        $this->aDirection = array();
 
         for ($l = 0; $l < 8; $l++) {
             for ($c = 0; $c < 8; $c++) {
 
                 if ($this->isPossibleAction($l, $c)) {
-                    echo 'tralala';
                     $this->aPossibleCases[] = array($l, $c);
                 }
             }
         }
-        echo '<pre>';
-        echo 'tableau des cas possibles : ';
-        print_r($this->aPossibleCases);
-        print_r($this->aDirection);
-        echo '</pre>';
     }
 
     /**
      * Permet de savoir si la case est cliquable ou pas et remplissage en même
      * temps du tableau des directions (pas pour ligne et pas pour colonne) qui
      * permettra plus tard de retourner les pions.
+     *
      * @param type $l
      * @param type $c
      * @return boolean
      */
     public function isPossibleAction($l, $c) {
-        echo '-----------' . '<br/>';
-        echo 'isPossibleAction : ' . $l . ',' . $c . '<br />';
-        $bPossible = false;
-        echo ' couleur joueur: ' . $this->playerTurn . '<br />';
         if ($this->playerTurn == Pawn::TYPE_WHITE) {
             $OppositeColor = Pawn::TYPE_BLACK;
         } else {
             $OppositeColor = Pawn::TYPE_WHITE;
         }
-        echo ' couleur opposée : ' . $OppositeColor . '<br />';
-
+        $this->aDirection[$l][$c] = array();
         $iNbPos = 8;
 
         // calcul de i
@@ -115,27 +107,17 @@ class Board {
         if (($l == 0 && $c == 0) || ($l == 0 && $c == 7) || ($l == 7 && $c == 0) || ($l == 7 && $c == 7)) {
             $iNbPos++;
         }
-        /* echo '$iNbPos: ' . $iNbPos . '<br />';
-          echo '$i : ' . $i . '<br />';
-          echo '$j : ' . $j . '<br />';
-          echo '$finL : ' . $FinL . '<br />';
-          echo '$finC : ' . $FinC . '<br />'; */
+
         $jdeb = $j;
-        while (!$bPossible && $iNbPos != 0 && $i < $FinL) {
+        while ($iNbPos != 0 && $i < $FinL) {
             $j = $jdeb;
-            while (!$bPossible && $iNbPos != 0 && $j < $FinC) {
-                /*  echo 'ds les while' . '<br/>';
-                  echo '$i : ' . $i . '<br />';
-                  echo '$j : ' . $j . '<br />';
-                  echo '$l : ' . $l . '<br />';
-                  echo '$c : ' . $c . '<br />'; */
+            while ($iNbPos != 0 && $j < $FinC) {
                 if ($i != $l || $j != $c) {
                     // echo 'ds le if' . '<br/>';
                     if ($this->aBoard[$i][$j] instanceof Pawn && $this->aBoard[$i][$j]->getColor() == $OppositeColor) {
                         if ($this->run($l, $c, $i, $j)) {
                             // TODO : initialiser le tableau proprement
                             $this->aDirection[$l][$c][] = array($i - $l, $j - $c);
-                            $bPossible = true;
                         }
                     }
                     $iNbPos--;
@@ -144,17 +126,7 @@ class Board {
             }
             $i++;
         }
-        /* echo 'fin des whiles' . '<br />';
-          echo '$i : ' . $i . '<br />';
-          echo '$j : ' . $j . '<br />';
-          if (!$bPossible) {
-          echo 'false' . '<br />';
-          } else {
-          echo 'true' . '<br />';
-          }
-          echo 'inbpos : ' . $iNbPos . '<br />'; */
-
-        return $bPossible;
+        return count($this->aDirection[$l][$c]) > 0;
     }
 
     public function validPosition($i, $j) {
@@ -169,32 +141,19 @@ class Board {
     public function run($l, $c, $Li, $Co) {
         $StepL = $Li - $l;
         $StepC = $Co - $c;
-        echo 'ds fonction run' . '<br/>';
-        echo '$L : ' . $l . '<br/>';
-        echo '$C : ' . $c . '<br/>';
-        echo '$Li : ' . $Li . '<br/>';
-        echo '$Co : ' . $Co . '<br/>';
-        echo '$StepL : ' . $StepL . '<br/>';
-        echo '$StepC : ' . $StepC . '<br/>';
 
         $bPossible = false;
         $i = $Li;
         $j = $Co;
 
         while ($this->validPosition($i, $j) && $this->aBoard[$i][$j] instanceof Pawn && $this->aBoard[$i][$j]->getColor() != $this->playerTurn) {
-            echo '$i : ' . $i . '<br/>';
-            echo '$j : ' . $j . '<br/>';
-            echo 'couleur pion ' . $this->aBoard[$i][$j]->getColor() . '<br/>';
-
             $j += $StepC;
             $i += $StepL;
         }
-        echo 'out' . '<br/>';
-        if ($this->aBoard[$i][$j] instanceof Pawn && $this->aBoard[$i][$j]->getColor() == $this->playerTurn) {
-            echo 'true' . '<br/>';
+
+        if ($this->validPosition($i, $j) && $this->aBoard[$i][$j] instanceof Pawn && $this->aBoard[$i][$j]->getColor() == $this->playerTurn) {
             $bPossible = true;
         }
-
         return $bPossible;
     }
 
@@ -203,15 +162,7 @@ class Board {
      */
 
     public function possibleClick($l, $c) {
-        $i = 0;
-        $bTrouve = false;
-        while (!$bTrouve && $i < count($this->aPossibleCases)) {
-            if ($this->aPossibleCases[$i][0] == $l && $this->aPossibleCases[$i][1] == $c) {
-                $bTrouve = true;
-            }
-            $i++;
-        }
-        return $bTrouve;
+        return in_array(array($l, $c), $this->aPossibleCases);
     }
 
     /* 7
@@ -219,43 +170,45 @@ class Board {
      */
 
     public function turnPawn($l, $c) {
+        foreach ($this->aDirection[$l][$c] as $way) {
+            $StepL = $way[0];
+            $StepC = $way[1];
 
-        if ($this->possibleClick($l, $c)) {
-            if ($this->playerTurn == Pawn::TYPE_WHITE) {
-                $OppositeColor = Pawn::TYPE_BLACK;
-            } else {
-                $OppositeColor = Pawn::TYPE_WHITE;
-            }
-            $Way = 0;
-            while ($Way < 8) {
-                $StepL = $aDirection[$l][$c][$Way][0];
-                $StepC = $aDirection[$l][$c][$Way][1];
-                $i = $l + $StepL;
-                $j = $c + $StepC;
-                while ($i >= 0 && $i < 8) {
-                    while ($j >= 0 && $j < 8 && $this->aBoard[$i][$j] == $OppositeColor) {
-                        $this->aBoard[$i][$j] = $this->playerTurn;
-                        $j = $j + $Stepc;
-                    }
-                    $i = $i + $stepL;
+            $i = $l + $StepL;
+            $j = $c + $StepC;
+            while ($this->validPosition($i, $j) && $this->aBoard[$i][$j]->getColor() != $this->playerTurn) {
+                $this->aBoard[$i][$j]->reverse();
+                //gestion des scores :
+                if ($this->playerTurn == Pawn::TYPE_WHITE) {
+                    $this->scoreWhite++;
+                    $this->scoreBlack--;
+                } else {
+                    $this->scoreBlack++;
+                    $this->scoreWhite--;
                 }
+
+                $i += $StepL;
+                $j += $StepC;
             }
         }
     }
 
-    public function doAction($x, $y) {
+    public function doAction($l, $c) {
         $bSuccess = 'error';
 
-        // TODO.intégrer les actions de Martine.
-        if (!$this->aBoard[$x][$y] instanceof Pawn) {
-            $this->aBoard[$x][$y] = new Pawn($this->playerTurn);
+        if (!$this->aBoard[$l][$c] instanceof Pawn) {
+            if ($this->possibleClick($l, $c)) {
+                $this->aBoard[$l][$c] = new Pawn($this->playerTurn);
+                $this->TurnPawn($l, $c);
 
-            $this->nextPlayer();
-            $bSuccess = 'success';
+                $this->nextPlayer();
+                $bSuccess = 'success';
+            }
         }
 
         return array(
             'status' => $bSuccess,
+            'data' => $this->aDirection
         );
     }
 
@@ -273,6 +226,8 @@ class Board {
         } else {
             $this->playerTurn = Pawn::TYPE_BLACK;
         }
+
+        $this->calculPossiblesCases();
     }
 
     public function getBoard() {
@@ -284,3 +239,5 @@ class Board {
     }
 
 }
+
+?>
