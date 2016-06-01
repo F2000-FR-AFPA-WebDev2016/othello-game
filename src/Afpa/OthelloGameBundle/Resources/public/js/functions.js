@@ -53,17 +53,22 @@ $(function () {
     });
     
     
-    
-   /* function reset(){
+   //Bouton reset de partie à tout moment
+   function reset(){
         $.ajax({
             async: true,
             type: 'POST',
-            url: "",
+            url: "game/reset",
+            success: function(){
+                refresh();
+            }
             
-        })
-        
-        
-    }*/
+        });
+    }
+    
+    $('#resetBtn').click(function () {
+        reset();
+    });
 });    
 
 

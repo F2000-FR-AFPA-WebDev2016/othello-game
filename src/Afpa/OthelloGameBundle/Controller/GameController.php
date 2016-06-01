@@ -60,4 +60,15 @@ class GameController extends Controller {
         return new JsonResponse($aData);
     }
 
+    /**
+     * @Route("/game/reset", name="reset")
+     * @Template()
+     */
+    public function gameResetAction(Request $request) {
+        $oSession = $request->getSession();
+        $oSession->set('game', new Board());
+
+        return new JsonResponse();
+    }
+
 }
