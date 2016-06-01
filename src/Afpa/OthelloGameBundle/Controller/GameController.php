@@ -21,6 +21,7 @@ class GameController extends Controller {
         $oSession = $request->getSession();
 
         $oGame = $oSession->get('game');
+        $oGame = null;
         if (!$oGame instanceof Board) {
             $oGame = new Board();
             $oSession->set('game', $oGame);
