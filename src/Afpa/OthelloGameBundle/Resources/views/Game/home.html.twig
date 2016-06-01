@@ -5,42 +5,17 @@
 {% block body %}
 
     <div id="game">
-        <h1 id="start">Commencez la partie {{ player }}</h1>
-        <table id="board">
-            <tr>
-                <th></th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>E</th>
-                <th>F</th>
-                <th>G</th>
-                <th>H</th>
-            </tr>
-            {% set numLigne = 1 %}
-            {% for x in 0..board|length-1 %}
-                <tr>
-                    <th>{{ numLigne }}</th>
-                    {% for y in 0..board[x]|length-1 %}
-                        <td id="L{{x}}C{{y}}" data-x="{{x}}" data-y="{{y}}">
-                            {% if board[x][y] != '' %}
-                                <img src="{{asset("bundles/afpaothellogame/images/" ~ board[x][y])}}"/>
-                            {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
-                {% set numLigne = numLigne+1 %}
-            {% endfor %}
-        </table>
+        {{ render(controller('AfpaOthelloGameBundle:Game:gameView')) }}
     </div>
+
+    <button id="resetBtn">Reset</button>
 
     <!--Pop-up fin de la partie : à placer dans une boucle)-->
     <div id="popup" class="ui-widget-content ui-corner-all">
         <!--if { <h3 class="ui-widget-header ui-corner-all">Vous avez gagner $oPl</h3> } else { }-->
         <h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
         <p>
-            Voulez-vous rejouez?
+            Voulez-vous rejouer?
         </p>
         <!--Redirection vers une nouvelle partie-->
         <!--<a href={# path('') #}--><button type="button" class="button">Oui</button><!--</a>-->
@@ -48,5 +23,12 @@
         <!--<a href={# path('') #}--><button type="button" class="button">Non</button><!--</a>-->
     </div>
 
+
+    <aside>
+        <h3>Règles du jeu d'Othello</h3>
+        <p>"Othello est un jeu de stratégie à deux joueurs : Noir et Blanc. Il se joue sur un plateau unicolore de 64 cases, 8 sur 8, appelé othellier. Ces joueurs disposent de 64 pions bicolores, noirs d'un côté et blancs de l'autre.  Par commodité, chaque joueur a devant lui 32 pions mais ils ne lui appartiennent pas et il doit en donner à son adversaire si celui-ci n'en a plus. Un pion est noir si sa face noire est visible et blanc si sa face blanche est sur le dessus."
+            <br/></br><a id="rules" href ="http://www.ffothello.org/othello/regles-du-jeu/" target="_blank">Règles du jeu</a> <span>(nouvelle fenêtre)</span>
+        </p>
+    </aside>
 {% endblock %}
 

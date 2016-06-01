@@ -14,21 +14,21 @@
         <!--<img id="logo" src="{#asset("bundles/afpaothellogame/images/4pions.jpg")#}"/>-->
         <h1 id="othello">Othello</h1>
         <div id="form">
-            <!--<a href={# path('login') #}--><button type="button" class="button">login</button><!--</a>-->
-            <!--<a href={# path('register') #}--><button type="button" class="button">New player</button><!--</a>-->
+            {%if app.request.session.get('oUser') is not null %}
+                Connecté : {{ app.request.session.get('oUser').login}}
+                <a href="{{ path('logout')}}"><button type="button" class="button">Déconnexion</button></a>
+            {% else %}
+                <a href="{{ path('login')}}"><button type="button" class="button">Connexion</button></a>
+                <a href="{{ path('register')}}"><button type="button" class="button">New player</button></a>
+            {% endif %}
+
         </div>
     </header>
-    {% block body %}
-    {% endblock %}
 
-    <aside>
-        <div id="aside">
-            <h3>Règles du jeu d'Othello</h3>
-            <p>"Othello® est un jeu de stratégie à deux joueurs : Noir et Blanc. Il se joue sur un plateau unicolore de 64 cases, 8 sur 8, appelé othellier. Ces joueurs disposent de 64 pions bicolores, noirs d'un côté et blancs de l'autre.  Par commodité, chaque joueur a devant lui 32 pions mais ils ne lui appartiennent pas et il doit en donner à son adversaire si celui-ci n'en a plus. Un pion est noir si sa face noire est visible et blanc si sa face blanche est sur le dessus."
-                <br /></br><a id="rules" href ="http://www.ffothello.org/othello/regles-du-jeu/" target="_blank">Règles du jeu</a> <span>(nouvelle fenêtre)</span>
-            </p>
-        </div>
-    </aside>
+    <section id="corps">
+        {% block body %}
+        {% endblock %}
+    </section>
 
     <footer>
         <p>Copyright © 2016</p>

@@ -1,3 +1,7 @@
+html{
+    height: 100%;
+}
+
 /*Header*/
 
 header {
@@ -25,7 +29,7 @@ h1#othello {
     font-size : 40px;
 }
 
-#form {
+header #form {
     position:absolute;
     top:75px;
     right:25px;
@@ -38,9 +42,14 @@ body {
     background-image: url("../images/fond_vert.jpeg");
 }
 
+#corps{
+    width: 100%;
+    min-height: 370px;
+}
+
 /*Aside*/
 
-#aside {
+aside {
     position : absolute;
     width : 350px;
     margin-right : 20px;
@@ -55,7 +64,7 @@ body {
     margin-left : 90px;
 }
 
-#aside p span {
+aside p span {
     font-size: 12px;
 }
 
@@ -101,8 +110,8 @@ button.button {
 }
 #popup {
     position : absolute;
-    top:330px;
-    left:536px;
+    top:373px;
+    left:530px;
     text-align: center;
     width : 300px;
     margin:auto;
@@ -118,7 +127,38 @@ button.button {
 /*Footer*/
 
 footer {
+    height:40px;
     text-align : right;
-    margin-right : 10px;
+    margin-right : 8px;
     font-family : Georgia;
+}
+
+/*Form Symfony : New Play (register) + login */
+
+label.required {
+    margin: 10px;
+    margin-left : 520px;
+    font-family: Georgia;
+}
+
+input#form_login{
+    margin-top: 100px;
+    margin-bottom:10px;
+    margin-left : 27px;
+    width : 200px;
+    height : auto;
+}
+
+input#form_password {
+    width : 200px;
+    height : auto
+}
+
+input.envoyer {
+    margin-left: 737px;
+    margin-top : 10px;
+}
+
+section#corps h1 {
+    margin-top : 60px;
 }

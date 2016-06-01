@@ -1,8 +1,14 @@
 {% extends "AfpaOthelloGameBundle::layout.html.twig" %}
 
-{% block title %}AfpaOthelloGameBundle:User:register{% endblock %}
+{% block title %}AfpaOthelloGameBundle:Game:home{% endblock %}
 
 {% block body %}
-    <h1>Welcome at the User:register page</h1>
+    <h1>Enregistrez-vous :</h1>
+
+    {{form_errors(register)}}
+    <form method="POST">
+        {{form_widget(register)}}
+        <input class="envoyer" type="submit"/>
+    </form>
 
 {% endblock %}{# empty Twig template #}
