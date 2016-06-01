@@ -244,11 +244,18 @@ class Board {
     }
 
     public function doAction($x, $y) {
-// TODO.intégrer les actions de Martine.
+        $bSuccess = 'error';
 
+        // TODO.intégrer les actions de Martine.
+        if (!$this->aBoard[$x][$y] instanceof Pawn) {
+            $this->aBoard[$x][$y] = new Pawn($this->playerTurn);
+
+            $this->nextPlayer();
+            $bSuccess = 'success';
+        }
 
         return array(
-            'status' => 'success'
+            'status' => $bSuccess,
         );
     }
 
@@ -257,6 +264,14 @@ class Board {
             return 'Black';
         } else {
             return 'White';
+        }
+    }
+
+    public function nextPlayer() {
+        if ($this->playerTurn == Pawn::TYPE_BLACK) {
+            $this->playerTurn = Pawn::TYPE_WHITE;
+        } else {
+            $this->playerTurn = Pawn::TYPE_BLACK;
         }
     }
 
