@@ -162,3 +162,9 @@ input.envoyer {
 section#corps h1 {
     margin-top : 60px;
 }
+
+#resetBtn {
+    position : absolute;
+    margin-top : 373px;
+    margin-left : 945px;
+}

@@ -4,11 +4,11 @@
 
 {% block body %}
 
+    <button id="resetBtn" class="ui-widget-content ui-corner-all">Recommencer la partie</button>
+
     <div id="game">
         {{ render(controller('AfpaOthelloGameBundle:Game:gameView')) }}
     </div>
-
-    <button id="resetBtn">Reset</button>
 
     <!--Pop-up fin de la partie : à placer dans une boucle)-->
     <div id="popup" class="ui-widget-content ui-corner-all">
