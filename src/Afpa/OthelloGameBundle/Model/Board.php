@@ -226,6 +226,7 @@ class Board {
         } else {
             $this->playerTurn = Pawn::TYPE_BLACK;
         }
+
         $this->calculPossiblesCases();
     }
 
@@ -238,4 +239,5 @@ class Board {
     }
 
 }
+
 ?>
