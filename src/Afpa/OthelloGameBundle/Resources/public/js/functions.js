@@ -1,12 +1,22 @@
 $(function () {
     //Executer l'effet
     function displayPopupEndGame() {
-        $("#popup").show('scale', null, 500);
-    }
-    $("#popup").hide();
+        // Appel Ajax
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: "game/end",
+            error: function (errorData) {
+                console.log(errorData);
+            },
+            success: function (data) {
+                console.log(data);
 
-    //setTimeout(displayPopupEndGame, 2000);
-
+                $('#popup').html(data);
+                $('#popup').show('scale', null, 500);
+            }    
+        });
+    };
 
     $(document).on('click', '#board td', function () {
         console.log($(this).data('l') + ' ' + $(this).data('c'));
@@ -29,6 +39,9 @@ $(function () {
                     console.log(data);
                     if (data.status == 'success') {
                         refresh();
+                    }
+                    if (data.bEndGame){
+                        displayPopupEndGame();
                     }
                 }
             });

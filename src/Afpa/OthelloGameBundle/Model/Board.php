@@ -46,7 +46,6 @@ class Board {
 
         for ($l = 0; $l < 8; $l++) {
             for ($c = 0; $c < 8; $c++) {
-
                 if ($this->isPossibleAction($l, $c)) {
                     $this->aPossibleCases[] = array($l, $c);
                 }
@@ -64,6 +63,10 @@ class Board {
      * @return boolean
      */
     public function isPossibleAction($l, $c) {
+        if ($this->aBoard[$l][$c] instanceof Pawn) {
+            return false;
+        }
+
         if ($this->playerTurn == Pawn::TYPE_WHITE) {
             $OppositeColor = Pawn::TYPE_BLACK;
         } else {
@@ -193,10 +196,14 @@ class Board {
         }
     }
 
+    public function winnerAction() {
+
+    }
+
     public function doAction($l, $c) {
         $bSuccess = 'error';
 
-        if (!$this->aBoard[$l][$c] instanceof Pawn) {
+        if (!$this->aBoard[$l][$c] instanceof Pawn && !$this->checkEndGame()) {
             if ($this->possibleClick($l, $c)) {
                 $this->aBoard[$l][$c] = new Pawn($this->playerTurn);
                 $this->TurnPawn($l, $c);
@@ -208,16 +215,9 @@ class Board {
 
         return array(
             'status' => $bSuccess,
+            'bEndGame' => $this->checkEndGame(),
             'data' => $this->aDirection
         );
-    }
-
-    public function getPlayerTurn() {
-        if ($this->playerTurn == Pawn::TYPE_BLACK) {
-            return 'Black';
-        } else {
-            return 'White';
-        }
     }
 
     public function nextPlayer() {
@@ -228,6 +228,44 @@ class Board {
         }
 
         $this->calculPossiblesCases();
+    }
+
+    public function checkEndGame() {
+        //cas à gérer
+        //1-Plus de possibilité : impossible de jouer aPossibleCases=vide (on compte)
+        //2-Plus de place sur board $aBoard completed (on compte les pions des 2 joueurs)
+        if (count($this->aPossibleCases) == 0 || $this->scoreWhite + $this->scoreBlack == 64) {
+            return true;
+        }
+    }
+
+    public function getPlayerTurn() {
+        if ($this->playerTurn == Pawn::TYPE_BLACK) {
+            return 'Black';
+        } else {
+            return 'White';
+        }
+    }
+
+    public function getWinner() {
+        if ($this->scoreWhite == $this->scoreBlack) {
+            return 'Egalité pour les 2 joueurs';
+        }
+        if ($this->scoreWhite > $this->scoreBlack) {
+            return 'Le joueur blanc a gagné';
+        } else {
+            return 'Le joueur noir a gagné';
+        }
+    }
+
+    public function getScoreBlack() {
+
+        return $this->scoreBlack;
+    }
+
+    public function getScoreWhite() {
+
+        return $this->scoreWhite;
     }
 
     public function getBoard() {

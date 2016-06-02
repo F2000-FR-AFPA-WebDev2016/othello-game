@@ -162,3 +162,5 @@ input.envoyer {
 section#corps h1 {
     margin-top : 60px;
 }
+
+#popup {display:none;}

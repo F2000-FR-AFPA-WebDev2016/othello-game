@@ -40,7 +40,23 @@ class GameController extends Controller {
 
         return array(
             'board' => $oGame->getBoard(),
-            'player' => $oGame->getPlayerTurn()
+            'player' => $oGame->getPlayerTurn(),
+            'scoreblack' => $oGame->getScoreBlack(),
+            'scorewhite' => $oGame->getScoreWhite(),
+        );
+    }
+
+    /**
+     * @Route("/game/end", name="end")
+     * @Template()
+     */
+    public function endGameAction(Request $request) {
+        //on garde en session le jeu
+        $oSession = $request->getSession();
+        $oGame = $oSession->get('game');
+
+        return array(
+            'winner' => $oGame->getWinner(),
         );
     }
 
