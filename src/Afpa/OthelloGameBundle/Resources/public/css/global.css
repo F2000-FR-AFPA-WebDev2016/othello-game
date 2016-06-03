@@ -15,14 +15,17 @@ header {
     left:10px;
 }
 
-h1, h3 {
+h1, h2, h3 {
     text-align: center;
     height : 10px;
     font-family : Georgia;
 }
 
-h1#start {
+.start {
     font-size : 30px;
+}
+h2 {
+    font-size : 22px;
 }
 
 h1#othello {
@@ -56,6 +59,7 @@ aside {
     top:240px;
     right:30px;
     font-family : Georgia;
+    text-align: justify;
 }
 
 #rules {
@@ -164,9 +168,8 @@ section#corps h1 {
 }
 
 #resetBtn {
-    position : absolute;
-    margin-top : 373px;
-    margin-left : 945px;
+    float : left;
+    margin-top: 20px;
 }
 
 #popup {display:none;}
