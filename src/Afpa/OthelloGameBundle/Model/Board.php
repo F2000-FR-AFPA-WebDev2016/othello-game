@@ -33,6 +33,8 @@ class Board {
         $this->aBoard[4][4] = new Pawn(Pawn::TYPE_WHITE);
 
         $this->playerTurn = Pawn::TYPE_BLACK;
+        $this->scoreWhite = $this->scoreBlack = 2;
+
         $this->calculPossiblesCases();
     }
 
@@ -206,6 +208,13 @@ class Board {
         if (!$this->aBoard[$l][$c] instanceof Pawn && !$this->checkEndGame()) {
             if ($this->possibleClick($l, $c)) {
                 $this->aBoard[$l][$c] = new Pawn($this->playerTurn);
+                if ($this->playerTurn == Pawn::TYPE_WHITE) {
+                    $this->scoreWhite++;
+                } else {
+                    $this->scoreBlack++;
+                }
+
+
                 $this->TurnPawn($l, $c);
 
                 $this->nextPlayer();

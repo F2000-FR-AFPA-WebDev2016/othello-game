@@ -14,9 +14,10 @@ $(function () {
 
                 $('#popup').html(data);
                 $('#popup').show('scale', null, 500);
-            }    
+            }
         });
-    };
+    }
+    ;
 
     $(document).on('click', '#board td', function () {
         console.log($(this).data('l') + ' ' + $(this).data('c'));
@@ -40,7 +41,8 @@ $(function () {
                     if (data.status == 'success') {
                         refresh();
                     }
-                    if (data.bEndGame){
+                    if (data.bEndGame) {
+                        // if (data.status == 'winner') {
                         displayPopupEndGame();
                     }
                 }
