@@ -11,7 +11,7 @@ $(function () {
         //retirer le dernier element de l'url : app_dev.php : .pop
         url_parts.pop();
         //Ajout / a la fin de la chaine de caractère
-        var final_url = url_parts.join('/') + '/app_dev.php/';
+        var final_url = url_parts.join('/') + '/app_dev.php';
         console.log(final_url);
 
         return final_url;
