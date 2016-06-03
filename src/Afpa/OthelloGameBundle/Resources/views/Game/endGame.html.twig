@@ -7,9 +7,7 @@
 <p>
     Voulez-vous rejouer?
 </p>
-<!--Redirection vers une nouvelle partie-->
-
-
-<a href="{{ path ('game')}}"<button type="button" class="button">Oui</button></a>
+<!--Redirection vers le home : une nouvelle partie-->
+<a href="{{ path('home')}}"><button type="button" class="button">Oui</button></a>
 <!--Quitter partie = ferme $_Session-->
-<!--<a href={# path('home') }}--><button type="button" class="button">Non</button><!--</a>-->
+<a href="{{ path('logout')}}"><button type="button" class="button">Non (déconnexion)</button></a>
