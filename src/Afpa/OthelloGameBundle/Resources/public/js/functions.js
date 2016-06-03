@@ -1,11 +1,29 @@
 $(function () {
+
+    //Fct reutiliser url
+    function getStartUrl() {
+        //récupérer url
+        var url = window.location.pathname;
+        //séparer les élements de l'url : "", "othello-game" / "web" / "app_dev.php"
+        var url_parts = url.split('/');
+        console.log(url);
+        console.log(url_parts);
+        //retirer le dernier element de l'url : app_dev.php : .pop
+        url_parts.pop();
+        //Ajout / a la fin de la chaine de caractère
+        var final_url = url_parts.join('/') + '/app_dev.php';
+        console.log(final_url);
+
+        return final_url;
+    }
+
     //Executer l'effet
     function displayPopupEndGame() {
         // Appel Ajax
         $.ajax({
             async: true,
             type: 'POST',
-            url: "game/end",
+            url: getStartUrl() + "/game/end",
             error: function (errorData) {
                 console.log(errorData);
             },
@@ -28,7 +46,7 @@ $(function () {
             $.ajax({
                 async: true,
                 type: 'POST',
-                url: "game/action",
+                url: getStartUrl() + "/game/action",
                 data: {
                     l: $(this).data('l'),
                     c: $(this).data('c')
@@ -42,7 +60,6 @@ $(function () {
                         refresh();
                     }
                     if (data.bEndGame) {
-                        // if (data.status == 'winner') {
                         displayPopupEndGame();
                     }
                 }
@@ -54,7 +71,7 @@ $(function () {
         $.ajax({
             async: true,
             type: 'POST',
-            url: "game/view",
+            url: getStartUrl() + "/game/view",
             success: function (view) {
                 $('#game').html(view); // rafraichi la DIV
             },
@@ -70,7 +87,7 @@ $(function () {
         $.ajax({
             async: true,
             type: 'POST',
-            url: "game/reset",
+            url: getStartUrl() + "/game/reset",
             success: function () {
                 refresh();
             }
