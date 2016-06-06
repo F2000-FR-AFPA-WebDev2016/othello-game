@@ -84,7 +84,7 @@ class GameController extends Controller {
         $oSession = $request->getSession();
         $oSession->set('game', new Board());
 
-        return new JsonResponse();
+        return $this->redirect($this->generateUrl('home'));
     }
 
 }

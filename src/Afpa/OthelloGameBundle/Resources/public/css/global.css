@@ -116,7 +116,7 @@ button.button {
 }
 #popup {
     position : absolute;
-    Top:410px;
+    top:410px;
     left: calc(50% - 150px);
     text-align: center;
     width : 300px;
@@ -125,8 +125,8 @@ button.button {
     padding : 0.4em;
     background:rgba(255, 255, 255, 0.92);
     border-radius: 5px 5px 5px 5px;
-    
-    
+
+
 }
 #popup h3 {
     margin: 0;
