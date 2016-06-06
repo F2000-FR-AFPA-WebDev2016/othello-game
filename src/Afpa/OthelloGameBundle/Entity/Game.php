@@ -24,21 +24,21 @@ class Game {
     /**
      * @var string
      *
-     * @ORM\Column(name="party_name", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=150)
      */
-    private $partyName;
+    private $name;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_hour", type="datetimetz")
+     * @ORM\Column(name="created_date", type="datetimetz")
      */
-    private $dateHour;
+    private $createdDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="data", type="string", length=255)
+     * @ORM\Column(name="data", type="string", length=255, nullable=true)
      */
     private $data;
 
@@ -61,48 +61,6 @@ class Game {
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * Set partyName
-     *
-     * @param string $partyName
-     * @return Game
-     */
-    public function setPartyName($partyName) {
-        $this->partyName = $partyName;
-
-        return $this;
-    }
-
-    /**
-     * Get partyName
-     *
-     * @return string
-     */
-    public function getPartyName() {
-        return $this->partyName;
-    }
-
-    /**
-     * Set dateHour
-     *
-     * @param \DateTime $dateHour
-     * @return Game
-     */
-    public function setDateHour($dateHour) {
-        $this->dateHour = $dateHour;
-
-        return $this;
-    }
-
-    /**
-     * Get dateHour
-     *
-     * @return \DateTime
-     */
-    public function getDateHour() {
-        return $this->dateHour;
     }
 
     /**
@@ -145,6 +103,85 @@ class Game {
      */
     public function getEndGame() {
         return $this->endGame;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Game
+     */
+    public function setName($name) {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * Set createdDate
+     *
+     * @param \DateTime $createdDate
+     * @return Game
+     */
+    public function setCreatedDate($createdDate) {
+        $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * Get createdDate
+     *
+     * @return \DateTime
+     */
+    public function getCreatedDate() {
+        return $this->createdDate;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Afpa\OthelloGameBundle\Entity\User $users
+     * @return Game
+     */
+    public function addUser(\Afpa\OthelloGameBundle\Entity\User $users) {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Afpa\OthelloGameBundle\Entity\User $users
+     */
+    public function removeUser(\Afpa\OthelloGameBundle\Entity\User $users) {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers() {
+        return $this->users;
     }
 
 }

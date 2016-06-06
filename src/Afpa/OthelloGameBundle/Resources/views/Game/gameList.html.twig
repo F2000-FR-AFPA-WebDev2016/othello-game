@@ -1,0 +1,27 @@
+{% extends "AfpaOthelloGameBundle::layout.html.twig" %}
+
+{% block title %}AfpaOthelloGameBundle:Game:creationParty{% endblock %}
+
+{% block body %}
+    <a href="{{ path('game_create')}}"><button id="creation" class="ui-widget-content ui-corner-all">Créer une partie</button></a>
+
+    {% for game in games %}
+        <ul>
+            <li>{{game.name}} {# path('nb joueur'#}
+                <!--<a href="{# path('Rejoindre')#}"--><button id="rejoin" class="ui-widget-content ui-corner-all">Rejoindre la partie</button><!--</a>-->
+                <!--<a href="{# path('creationParty')#}"--><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button><!--</a>-->
+            </li>
+            <li>{{game.name}}{# path('nb joueur'#}
+                <!--<a href="{# path('Rejoindre')#}"--><button id="rejoin" class="ui-widget-content ui-corner-all">Rejoindre la partie</button><!--</a>-->
+                <!--<a href="{# path('creationParty')#}"--><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button><!--</a>-->
+            </li>
+            <li>{{game.name}} {# path('nb joueur'#}
+                <!--<a href="{# path('Rejoindre')#}"--><button id="rejoin" class="ui-widget-content ui-corner-all">Rejoindre la partie</button><!--</a>-->
+                <!--<a href="{# path('creationParty')#}"--><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button><!--</a>-->
+            </li>
+        </ul>
+    {% endfor %}
+
+    <div id="join_party"
+
+    {% endblock %}
