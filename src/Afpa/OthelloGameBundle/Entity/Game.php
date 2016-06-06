@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Game
-{
+class Game {
+
     /**
      * @var integer
      *
@@ -49,14 +49,17 @@ class Game
      */
     private $endGame;
 
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="game")
+     */
+    protected $users;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -66,20 +69,18 @@ class Game
      * @param string $partyName
      * @return Game
      */
-    public function setPartyName($partyName)
-    {
+    public function setPartyName($partyName) {
         $this->partyName = $partyName;
-    
+
         return $this;
     }
 
     /**
      * Get partyName
      *
-     * @return string 
+     * @return string
      */
-    public function getPartyName()
-    {
+    public function getPartyName() {
         return $this->partyName;
     }
 
@@ -89,20 +90,18 @@ class Game
      * @param \DateTime $dateHour
      * @return Game
      */
-    public function setDateHour($dateHour)
-    {
+    public function setDateHour($dateHour) {
         $this->dateHour = $dateHour;
-    
+
         return $this;
     }
 
     /**
      * Get dateHour
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getDateHour()
-    {
+    public function getDateHour() {
         return $this->dateHour;
     }
 
@@ -112,20 +111,18 @@ class Game
      * @param string $data
      * @return Game
      */
-    public function setData($data)
-    {
+    public function setData($data) {
         $this->data = $data;
-    
+
         return $this;
     }
 
     /**
      * Get data
      *
-     * @return string 
+     * @return string
      */
-    public function getData()
-    {
+    public function getData() {
         return $this->data;
     }
 
@@ -135,20 +132,19 @@ class Game
      * @param boolean $endGame
      * @return Game
      */
-    public function setEndGame($endGame)
-    {
+    public function setEndGame($endGame) {
         $this->endGame = $endGame;
-    
+
         return $this;
     }
 
     /**
      * Get endGame
      *
-     * @return boolean 
+     * @return boolean
      */
-    public function getEndGame()
-    {
+    public function getEndGame() {
         return $this->endGame;
     }
+
 }

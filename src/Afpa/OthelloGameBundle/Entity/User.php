@@ -36,6 +36,12 @@ class User {
     private $password;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     */
+    protected $game;
+
+    /**
      * Get id
      *
      * @return integer
