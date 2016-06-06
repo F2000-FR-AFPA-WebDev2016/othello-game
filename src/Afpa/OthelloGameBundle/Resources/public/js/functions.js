@@ -1,4 +1,7 @@
 $(function () {
+    var bAide = false;
+    var aPossibilities = false;
+    console.log('set aide false');
 
     //Fct reutiliser url
     function getStartUrl() {
@@ -6,17 +9,13 @@ $(function () {
         var url = window.location.pathname;
         //séparer les élements de l'url : "", "othello-game" / "web" / "app_dev.php"
         var url_parts = url.split('/');
-        console.log(url);
-        console.log(url_parts);
         //retirer le dernier element de l'url : app_dev.php : .pop
         //derniere cellule vide => faire pop
         // pour gerer si quelu'un ajoute un "/"
         // url_parts -1
         url_parts.pop();
         //Ajout / a la fin de la chaine de caractère
-        var final_url = url_parts.join('/') + '/app_dev.php';
-        console.log(final_url);
-
+        var final_url = url_parts.join('/');
         return final_url;
     }
 
@@ -46,29 +45,35 @@ $(function () {
         // test : est-ce que la case est vide
         if ($(this).html().indexOf("img") == -1) {
             // si oui, appel AJAX obtenir les x,y
-            $.ajax({
-                async: true,
-                type: 'POST',
-                url: getStartUrl() + "/game/action",
-                data: {
-                    l: $(this).data('l'),
-                    c: $(this).data('c')
-                },
-                error: function (errorData) {
-                    console.log(errorData);
-                },
-                success: function (data) {
-                    console.log(data);
-                    if (data.status == 'success') {
-                        refresh();
-                    }
-                    if (data.bEndGame) {
-                        displayPopupEndGame();
-                    }
-                }
-            });
+            doAction($(this).data('l'), $(this).data('c'));
         }
     });
+
+    function doAction(l, c) {
+        $.ajax({
+            async: true,
+            type: 'POST',
+            url: getStartUrl() + "/game/action",
+            data: {
+                l: l,
+                c: c
+            },
+            error: function (errorData) {
+                console.log(errorData);
+            },
+            success: function (data) {
+                console.log(data);
+                aPossibilities = data.possibilities;
+
+                if (data.status == 'success') {
+                    refresh();
+                }
+                if (data.bEndGame) {
+                    displayPopupEndGame();
+                }
+            }
+        });
+    }
 
     function refresh() {
         $.ajax({
@@ -76,8 +81,18 @@ $(function () {
             type: 'POST',
             url: getStartUrl() + "/game/view",
             success: function (view) {
+
                 $('#game').html(view); // rafraichi la DIV
-            },
+                if (bAide) {
+                    for (var i = 0; i < aPossibilities.length; i++) {
+                        console.log(aPossibilities[i]);
+                        x = aPossibilities[i][0];
+                        y = aPossibilities[i][1];
+                        console.log($('#L' + x + 'C' + y));
+                        $('#L' + x + 'C' + y).css('background-color', '#9cd590');
+                    }
+                }
+            }
         });
     }
 
@@ -101,6 +116,12 @@ $(function () {
     $('#resetBtn').click(function () {
         reset();
     });
+    $('.helpBtn').click(function () {
+        bAide = !bAide;
+        refresh();
+    });
+
+    doAction(-1, -1);
 });
 
 

@@ -11,10 +11,14 @@ header {
     text-align: center;
 }
 #logo {
-    height : 140px;
-    position:absolute;
-    top:30px;
-    left:30px;
+    height : 100px;
+    float: left;
+}
+.helpBtn{
+    clear: both;
+    float: left;
+    /*top: 400px;
+    left: 2%;*/
 }
 
 h1, h2, h3 {
@@ -125,8 +129,8 @@ button.button {
     padding : 0.4em;
     background:rgba(255, 255, 255, 0.92);
     border-radius: 5px 5px 5px 5px;
-    
-    
+
+
 }
 #popup h3 {
     margin: 0;
