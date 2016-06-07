@@ -64,11 +64,10 @@ class UserController extends Controller {
                     //stockage session
                     $oSession = $request->getSession();
                     $oSession->set('oUser', $oUserTemp);
-                    return $this->redirect($this->generateUrl('home'));
+                    return $this->redirect($this->generateUrl('game_list'));
                 }
             }
         }
-
         return array('login' => $oForm->createView());
     }
 

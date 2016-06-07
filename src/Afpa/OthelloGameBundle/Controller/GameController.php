@@ -102,10 +102,10 @@ class GameController extends Controller {
 
         return array(
             'games' => $aGames,
-            'bIsConnected' => (!$oSession->get('oUser') instanceof User)
+            'bIsConnected' => ($oSession->get('oUser') instanceof User)
         );
 
-        //redirection home? 
+        //redirection home?
     }
 
     /**
@@ -114,6 +114,11 @@ class GameController extends Controller {
      */
     public function createAction(Request $request) {
         $oSession = $request->getSession();
+
+        // Si tu n'es pas connecté, redirigé vers la page home
+        if (!$oSession->get('oUser', null) instanceof User) {
+            return $this->redirect($this->generateUrl('home'));
+        }
 
         $oGame = new Game();
         $oGame->setName('');
@@ -128,6 +133,7 @@ class GameController extends Controller {
         $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
         $oUser = $repo->findOneById($oSession->get('oUser')->getId());
         $oUser->setGame($oGame);
+        //execute les requetes
         $em->flush();
 
         return $this->redirect($this->generateUrl('game_list'));

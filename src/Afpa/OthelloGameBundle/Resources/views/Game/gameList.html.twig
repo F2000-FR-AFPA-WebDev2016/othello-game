@@ -3,24 +3,29 @@
 {% block title %}AfpaOthelloGameBundle:Game:creationParty{% endblock %}
 
 {% block body %}
-    <a href="{{ path('game_create')}}"><button id="creation" class="ui-widget-content ui-corner-all">Créer une partie</button></a>
+    <a href="{{ path('game_create')}}"><button id="creation" class="ui-widget-content ui-corner-all"{% if not bIsConnected %}disabled{% endif %}>Créer une partie</button></a>
 
-    {% for game in games %}
-        <ul>
-            <li>{{game.name}} {# path('nb joueur'#}
-                <!--<a href="{# path('Rejoindre')#}"--><button id="rejoin" class="ui-widget-content ui-corner-all">Rejoindre la partie</button><!--</a>-->
-                <!--<a href="{# path('creationParty')#}"--><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button><!--</a>-->
-            </li>
-            <li>{{game.name}}{# path('nb joueur'#}
-                <!--<a href="{# path('Rejoindre')#}"--><button id="rejoin" class="ui-widget-content ui-corner-all">Rejoindre la partie</button><!--</a>-->
-                <!--<a href="{# path('creationParty')#}"--><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button><!--</a>-->
-            </li>
-            <li>{{game.name}} {# path('nb joueur'#}
-                <!--<a href="{# path('Rejoindre')#}"--><button id="rejoin" class="ui-widget-content ui-corner-all">Rejoindre la partie</button><!--</a>-->
-                <!--<a href="{# path('creationParty')#}"--><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button><!--</a>-->
-            </li>
-        </ul>
-    {% endfor %}
+    <table id="liste">
+        <tr>
+            <th>Date</th>
+            <th>Joueurs</th>
+            <th>Actions</th>
+        </tr>
+        {% for game in games %}
+            {% set nbJoueurs = game.getUsers | length %}
+            <tr>
+                <td>{{game.createdDate | date('d/m/Y h:i:s')}}</td>
+                <td>{{ nbJoueurs }} / 2</td>
+                <td>
+                    {% if nbJoueurs < 2 %}
+                        <button id="rejoin" class="ui-widget-content ui-corner-all" {% if not bIsConnected %}disabled{% endif %}>Rejoindre la partie</button>
+                    {% else %}
+                        <button id="observation" class="ui-widget-content ui-corner-all" {% if not bIsConnected %}disabled{% endif %}>Observer la partie</button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 
     <div id="join_party"
 

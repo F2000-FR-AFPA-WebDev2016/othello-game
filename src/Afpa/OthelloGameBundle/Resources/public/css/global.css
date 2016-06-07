@@ -179,3 +179,33 @@ section#corps h1 {
 }
 
 #popup {display:none;}
+
+/*Tableau liste des parties*/
+
+table#liste {
+    width : 60%;
+    text-align: center;
+    font-family : Georgia;
+}
+
+table#liste th, td {
+    border: 1px solid #15641D;
+}
+
+table#liste th {
+    height: 40px;;
+    width : 200px;
+}
+
+table#liste td:hover {
+    background-color: #76F383;
+}
+
+button#creation {
+    position: absolute;
+    margin-top : 00px;
+    margin-left : 80px;
+    width : 130px;
+    height:40px;
+    font-size: 14px;
+}

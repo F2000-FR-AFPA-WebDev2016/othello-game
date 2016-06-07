@@ -19,35 +19,35 @@ class Game {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=150)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_date", type="datetimetz")
      */
-    private $createdDate;
+    protected $createdDate;
 
     /**
      * @var string
      *
      * @ORM\Column(name="data", type="string", length=255, nullable=true)
      */
-    private $data;
+    protected $data;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="end_game", type="boolean")
      */
-    private $endGame;
+    protected $endGame;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="game")
