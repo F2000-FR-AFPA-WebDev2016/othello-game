@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--Pop-up fin de la partie : à placer dans une boucle)-->
 <h3 class="ui-widget-header ui-corner-all">{{ winner }}</h3>
 <!--<h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
@@ -11,3 +12,19 @@
 <!--<a href="{{ path('reset')}}">-->button type="button" class="button" id="yesButton">Oui</button></a>
 <!--Quitter partie = ferme $_Session-->
 <a href="{{ path('logout')}}"><button type="button" class="button">Non (déconnexion)</button></a>
+=======
+<<<<<<< HEAD
+<!--Pop-up fin de la partie : à placer dans une boucle)-->
+<h3 class="ui-widget-header ui-corner-all">{{ winner }}</h3>
+<!--<h3  class="ui-widget-header ui-corner-all">Vous avez perdu $oPl</h3>
+<p>{# Board->getScoreWhite() #} pions blancs</p>
+<p>{# Board->getScoreBlack() #} pions noirs</p>-->
+
+<p>
+    Voulez-vous rejouer?
+</p>
+<!--Redirection vers le home : une nouvelle partie-->
+<a href="{{ path('reset')}}"><button type="button" class="button">Oui</button></a>
+<!--Quitter partie = ferme $_Session-->
+<a href="{{ path('logout')}}"><button type="button" class="button">Non (déconnexion)</button></a>
+>>>>>>> f0dfdd1b46e9c4db586524396bf0704bf54b338f

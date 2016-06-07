@@ -11,11 +11,17 @@ $(function () {
         var url_parts = url.split('/');
         //retirer le dernier element de l'url : app_dev.php : .pop
         //derniere cellule vide => faire pop
-        // pour gerer si quelu'un ajoute un "/"
-        // url_parts -1
-        url_parts.pop();
+        // pour gerer si quelu'un ajoute un "/" :
+        if (url_parts[url_parts.length - 1] == '') {
+            url_parts.pop();
+        }
         //Ajout / a la fin de la chaine de caractère
         var final_url = url_parts.join('/');
+<<<<<<< HEAD
+=======
+        console.log(final_url);
+
+>>>>>>> f0dfdd1b46e9c4db586524396bf0704bf54b338f
         return final_url;
     }
 

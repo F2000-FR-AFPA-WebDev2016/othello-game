@@ -120,7 +120,7 @@ button.button {
 }
 #popup {
     position : absolute;
-    Top:410px;
+    top:410px;
     left: calc(50% - 150px);
     text-align: center;
     width : 300px;
