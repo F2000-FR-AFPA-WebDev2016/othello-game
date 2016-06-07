@@ -15,6 +15,20 @@ use Afpa\OthelloGameBundle\Entity\Game;
 class GameController extends Controller {
 
     /**
+     * @Route("/help", name="help")
+     * @Template()
+     */
+    public function helpAction(Request $request) {
+        /*
+         * quand on le tableau des cas possibles est rempli
+         * on affiche le bouton aide
+         * si on a clique sur le bouton aide ->true
+         * les cases cliquables clignotent
+         * si on rappuie sur le bouton aide ->false les cases cliquables disparaissent
+         */
+    }
+
+    /**
      * @Route("/", name="home")
      * @Template()
      */

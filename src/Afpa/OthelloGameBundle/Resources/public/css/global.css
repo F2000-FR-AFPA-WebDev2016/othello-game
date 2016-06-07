@@ -12,9 +12,13 @@ header {
 }
 #logo {
     height : 100px;
-    position:absolute;
     top:30px;
     left:30px;
+    float: left;
+}
+.helpBtn{
+    clear: both;
+    float: left;
 }
 
 h1, h2, h3 {

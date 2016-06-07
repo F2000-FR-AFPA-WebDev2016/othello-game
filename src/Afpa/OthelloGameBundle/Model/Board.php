@@ -42,6 +42,12 @@ class Board {
      * de toutes les cases (ligne et colonne) où il est possible de jouer
      */
 
+    public function showPossibleCases() {
+        foreach ($this->aPossibleCases as $PossibleCases) {
+
+        }
+    }
+
     public function calculPossiblesCases() {
         $this->aPossibleCases = array();
         $this->aDirection = array();
@@ -205,7 +211,8 @@ class Board {
     public function doAction($l, $c) {
         $bSuccess = 'error';
 
-        if (!$this->aBoard[$l][$c] instanceof Pawn && !$this->checkEndGame()) {
+        if ($this->validPosition($l, $c) && !$this->aBoard[$l][$c] instanceof Pawn &&
+                !$this->checkEndGame()) {
             if ($this->possibleClick($l, $c)) {
                 $this->aBoard[$l][$c] = new Pawn($this->playerTurn);
                 if ($this->playerTurn == Pawn::TYPE_WHITE) {
@@ -225,7 +232,7 @@ class Board {
         return array(
             'status' => $bSuccess,
             'bEndGame' => $this->checkEndGame(),
-            'data' => $this->aDirection
+            'possibilities' => $this->aPossibleCases
         );
     }
 

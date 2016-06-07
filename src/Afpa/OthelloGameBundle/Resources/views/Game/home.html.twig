@@ -3,7 +3,7 @@
 {% block title %}AfpaOthelloGameBundle:Game:home{% endblock %}
 
 {% block body %}
-
+    <input type="checkbox" class="helpBtn"><label>Aide</label>
     <div id="game">
         {{ render(controller('AfpaOthelloGameBundle:Game:gameView')) }}
     </div>
