@@ -31,7 +31,7 @@ class User {
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=50)
+     * @ORM\Column(name="password", type="string", length=100)
      */
     private $password;
 
@@ -94,9 +94,12 @@ class User {
 
     //verif password :
     public function verifAuth($password) {
-        return $this->password == $password;
+        return (self::cryptPwd($password) == $this->getPassword());
     }
 
+    public static function cryptPwd($sPwd) {
+        return sha1('RX]D*-_pQUn(_\Xi#T$*' . $sPwd);
+    }
 
     /**
      * Set game
@@ -104,20 +107,19 @@ class User {
      * @param \Afpa\OthelloGameBundle\Entity\Game $game
      * @return User
      */
-    public function setGame(\Afpa\OthelloGameBundle\Entity\Game $game = null)
-    {
+    public function setGame(\Afpa\OthelloGameBundle\Entity\Game $game = null) {
         $this->game = $game;
-    
+
         return $this;
     }
 
     /**
      * Get game
      *
-     * @return \Afpa\OthelloGameBundle\Entity\Game 
+     * @return \Afpa\OthelloGameBundle\Entity\Game
      */
-    public function getGame()
-    {
+    public function getGame() {
         return $this->game;
     }
+
 }
