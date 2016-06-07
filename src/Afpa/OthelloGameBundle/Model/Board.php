@@ -42,12 +42,6 @@ class Board {
      * de toutes les cases (ligne et colonne) où il est possible de jouer
      */
 
-    public function showPossibleCases() {
-        foreach ($this->aPossibleCases as $PossibleCases) {
-
-        }
-    }
-
     public function calculPossiblesCases() {
         $this->aPossibleCases = array();
         $this->aDirection = array();
