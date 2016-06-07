@@ -17,11 +17,7 @@ $(function () {
         }
         //Ajout / a la fin de la chaine de caractère
         var final_url = url_parts.join('/');
-<<<<<<< HEAD
-=======
-        console.log(final_url);
-
->>>>>>> f0dfdd1b46e9c4db586524396bf0704bf54b338f
+        
         return final_url;
     }
 
