@@ -29,6 +29,8 @@ class UserController extends Controller {
 
             if ($oForm->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                //hash password
+                $oUser->setPassword(User::cryptPwd($oUser->getPassword()));
                 $em->persist($oUser);
                 $em->flush();
 
@@ -57,11 +59,13 @@ class UserController extends Controller {
             if ($oForm->isValid()) {
                 $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
                 $oUserTemp = $repo->findOneByLogin($oUser->getLogin());
-
+                //todo get password et verifier
+                //
                 //vérifie si les données sont valides :
                 //utilise la fonction verifAuth (cf. User)
                 if ($oUserTemp && $oUserTemp->verifAuth($oUser->getPassword())) {
                     //stockage session
+                    echo 'je suis loggé';
                     $oSession = $request->getSession();
                     $oSession->set('oUser', $oUserTemp);
                     return $this->redirect($this->generateUrl('game_list'));
