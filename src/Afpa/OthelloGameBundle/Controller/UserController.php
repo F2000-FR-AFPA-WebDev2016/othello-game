@@ -31,6 +31,7 @@ class UserController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 //hash password
                 $oUser->setPassword(User::cryptPwd($oUser->getPassword()));
+                $oUser->setNbWinnedGame(0);
                 $em->persist($oUser);
                 $em->flush();
 
