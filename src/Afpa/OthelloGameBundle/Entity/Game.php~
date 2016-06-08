@@ -125,27 +125,6 @@ class Game {
     }
 
     /**
-     * Set data
-     *
-     * @param string $data
-     * @return Game
-     */
-    public function setData($data) {
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return string
-     */
-    public function getData() {
-        return $this->data;
-    }
-
-    /**
      * Add users
      *
      * @param \Afpa\OthelloGameBundle\Entity\User $users

@@ -1,0 +1,36 @@
+{% extends "AfpaOthelloGameBundle::layout.html.twig" %}
+
+{% block title %}AfpaOthelloGameBundle:Game:creationParty{% endblock %}
+
+{% block body %}
+    <a href="{{ path('game_create')}}"><button id="creation" class="ui-widget-content ui-corner-all"{% if (not bIsConnected) or (game_user is not null) %}disabled{% endif %}>Créer une partie</button></a>
+
+    <table id="liste">
+        <tr>
+            <th>Date</th>
+            <th>Joueurs</th>
+            <th>Actions</th>
+        </tr>
+        {% for game in games %}
+            {% set nbJoueurs = game.getUsers | length %}
+            <tr>
+                <td>{{game.createdDate | date('d/m/Y h:i:s')}}</td>
+                <td>{{ nbJoueurs }} / 2</td>
+                <td>
+                    {% if (game_user is not null) and game_user.id == game.id %}
+                        En attente de joueurs...
+                    {% elseif nbJoueurs < 2 %}
+                        <a href="{{ path ('game_join', {'idGame':game.id}) }}"<button id="rejoin" class="ui-widget-content ui-corner-all"{% if not bIsConnected %}disabled{% endif %}>Rejoindre la partie</button></a>
+                    {% else %}
+                        <a href="{{ path ('game_play', {'idGame':game.id}) }}"<button id="observation" class="ui-widget-content ui-corner-all" {% if not bIsConnected %}disabled{% endif %}>Observer la partie</button></a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div id="join_party"
+
+    {% endblock %}
+

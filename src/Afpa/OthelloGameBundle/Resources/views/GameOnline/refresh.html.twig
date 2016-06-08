@@ -1,0 +1,31 @@
+<!--if commencez remplacer par joueur noir :-->
+<!--sccore joueur blanc blanc :score => css surbrillance du joueur en train de joueur-->
+<h1 class="start">Au joueur {{ player }} de jouer</h1>
+<h2>{{scoreblack}} pions noirs {{scorewhite}} pions blancs</h2>
+<table id="board" data-id="{{ idGame }}">
+    <tr>
+        <th></th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+    </tr>
+    {% set numLigne = 1 %}
+    {% for l in 0..board|length-1 %}
+        <tr>
+            <th>{{ numLigne }}</th>
+                {% for c in 0..board[l]|length-1 %}
+                <td id="L{{l}}C{{c}}" data-l="{{l}}" data-c="{{c}}">
+                    {% if board[l][c] != '' %}
+                        <img src="{{asset("bundles/afpaothellogame/images/" ~ board[l][c])}}"/>
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+        {% set numLigne = numLigne+1 %}
+    {% endfor %}
+</table>

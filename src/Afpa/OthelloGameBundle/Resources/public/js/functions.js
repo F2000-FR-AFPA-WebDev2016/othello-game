@@ -2,31 +2,21 @@ $(function () {
     var bAide = false;
     var aPossibilities = false;
 
-    //Fct reutiliser url
-    function getStartUrl() {
-        //récupérer url
-        var url = window.location.pathname;
-        //séparer les élements de l'url : "", "othello-game" / "web" / "app_dev.php"
-        var url_parts = url.split('/');
-        //retirer le dernier element de l'url : app_dev.php : .pop
-        //derniere cellule vide => faire pop
-        // pour gerer si quelu'un ajoute un "/" :
-        if (url_parts[url_parts.length - 1] == '') {
-            url_parts.pop();
-        }
-        //Ajout / a la fin de la chaine de caractère
-        var final_url = url_parts.join('/');
-
-        return final_url;
+    function getGameId() {
+        return $('#board').data('id');
     }
 
-    //Executer l'effet
     function displayPopupEndGame() {
-        // Appel Ajax
+        url = START_URL + "/game/end";
+        idGame = getGameId();
+        if (idGame) {
+            url += "/" + idGame;
+        }
+
         $.ajax({
             async: true,
             type: 'POST',
-            url: getStartUrl() + "/game/end",
+            url: url,
             error: function (errorData) {
                 console.log(errorData);
             },
@@ -38,23 +28,18 @@ $(function () {
             }
         });
     }
-    ;
-
-    $(document).on('click', '#board td', function () {
-        console.log($(this).data('l') + ' ' + $(this).data('c'));
-
-        // test : est-ce que la case est vide
-        if ($(this).html().indexOf("img") == -1) {
-            // si oui, appel AJAX obtenir les x,y
-            doAction($(this).data('l'), $(this).data('c'));
-        }
-    });
 
     function doAction(l, c) {
+        url = START_URL + "/game/action";
+        idGame = getGameId();
+        if (idGame) {
+            url += "/" + idGame;
+        }
+
         $.ajax({
             async: true,
             type: 'POST',
-            url: getStartUrl() + "/game/action",
+            url: url,
             data: {
                 l: l,
                 c: c
@@ -77,12 +62,17 @@ $(function () {
     }
 
     function refresh() {
+        url = START_URL + "/game/refresh";
+        idGame = getGameId();
+        if (idGame) {
+            url += "/" + idGame;
+        }
+
         $.ajax({
             async: true,
             type: 'POST',
-            url: getStartUrl() + "/game/view",
+            url: url,
             success: function (view) {
-
                 $('#game').html(view); // rafraichi la DIV
                 if (bAide) {
                     $('.helpBtn').attr('checked', 'checked');
@@ -98,25 +88,35 @@ $(function () {
         });
     }
 
-    $('#refreshBtn').click(function () {
-        refresh();
-    });
-
-    //Bouton reset de partie à tout moment
     function reset() {
+        url = START_URL + "/game/reset";
+        idGame = getGameId();
+        if (idGame) {
+            url += "/" + idGame;
+        }
+
         $.ajax({
             async: true,
             type: 'POST',
-            url: getStartUrl() + "/game/reset",
+            url: url,
             success: function () {
                 refresh();
             }
-
         });
     }
 
     $(document).on('click', '#resetBtn', function () {
         reset();
+    });
+
+    $(document).on('click', '#board td', function () {
+        console.log($(this).data('l') + ' ' + $(this).data('c'));
+
+        // test : est-ce que la case est vide
+        if ($(this).html().indexOf("img") == -1) {
+            // si oui, appel AJAX obtenir les x,y
+            doAction($(this).data('l'), $(this).data('c'));
+        }
     });
 
     $(document).on('click', '.helpBtn', function () {
@@ -126,6 +126,3 @@ $(function () {
 
     doAction(-1, -1);
 });
-
-
-
