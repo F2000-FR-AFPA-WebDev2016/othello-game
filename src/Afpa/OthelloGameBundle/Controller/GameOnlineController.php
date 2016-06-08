@@ -169,21 +169,28 @@ class GameOnlineController extends Controller {
      * @Route("/game/action/{idGame}")
      * @Template()
      */
-    public function gameAction(Request $request) {
-        /* $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:Game');
-          $oGame = $repo->findOneBy(array(
-          'id' => $idGame,
-          'status' => Game::STATUS_STARTED
-          ));
+    public function doAction(Request $request, $idGame) {
+        $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:Game');
+        $oGame = $repo->findOneBy(array(
+            'id' => $idGame,
+            'status' => Game::STATUS_STARTED
+        ));
 
-          $oSession = $request->getSession();
-          $oBoard = $oSession->get('game');
+        //Si game n'est pas une instance et si la partie n'a pas commencé : tu rediriges vers game_list
+        if (!$oGame instanceof Game) {
+            return $this->redirect($this->generateUrl('game_list'));
+        }
 
-          $l = $request->get('l');
-          $c = $request->get('c');
+        $l = $request->get('l');
+        $c = $request->get('c');
 
-          $aData = $oBoard->doAction($l, $c);
-          return new JsonResponse($aData); */
+        $oBoard = unserialize($oGame->getData());
+        $aData = $oBoard->doAction($l, $c);
+        $oGame->setData(serialize($oBoard));
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse($aData);
     }
 
 }
