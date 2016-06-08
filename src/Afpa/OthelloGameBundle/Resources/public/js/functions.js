@@ -1,7 +1,6 @@
 $(function () {
     var bAide = false;
     var aPossibilities = false;
-    console.log('set aide false');
 
     //Fct reutiliser url
     function getStartUrl() {
@@ -17,7 +16,7 @@ $(function () {
         }
         //Ajout / a la fin de la chaine de caractère
         var final_url = url_parts.join('/');
-        
+
         return final_url;
     }
 
@@ -86,12 +85,13 @@ $(function () {
 
                 $('#game').html(view); // rafraichi la DIV
                 if (bAide) {
+                    $('.helpBtn').attr('checked', 'checked');
                     for (var i = 0; i < aPossibilities.length; i++) {
                         console.log(aPossibilities[i]);
                         x = aPossibilities[i][0];
                         y = aPossibilities[i][1];
                         console.log($('#L' + x + 'C' + y));
-                        $('#L' + x + 'C' + y).css('background-color', '#9cd590');
+                        $('#L' + x + 'C' + y).css('background-color', '#90cf7d');
                     }
                 }
             }
@@ -115,10 +115,11 @@ $(function () {
         });
     }
 
-    $('#resetBtn').click(function () {
+    $(document).on('click', '#resetBtn', function () {
         reset();
     });
-    $('.helpBtn').click(function () {
+
+    $(document).on('click', '.helpBtn', function () {
         bAide = !bAide;
         refresh();
     });

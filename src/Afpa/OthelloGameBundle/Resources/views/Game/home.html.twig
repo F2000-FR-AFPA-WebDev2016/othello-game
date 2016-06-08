@@ -3,7 +3,30 @@
 {% block title %}AfpaOthelloGameBundle:Game:home{% endblock %}
 
 {% block body %}
-    <input type="checkbox" class="helpBtn"><label>Aide</label>
+    <div>
+
+        <table id="winners">
+
+            <caption>Meilleurs joueurs</caption>
+
+
+            {% set numLigne = 1 %}
+            {% for winner in winners %}
+                <tr>
+                    <th>{{ numLigne }}</th>
+                    <td>
+                        {{winner.login}}
+                    </td>
+                    <td>
+                        {{winner.nbWinnedGame}}
+                    </td>
+
+                </tr>
+                {% set numLigne = numLigne+1 %}
+            {% endfor %}
+        </table>
+
+    </div>
     <div id="game">
         {{ render(controller('AfpaOthelloGameBundle:Game:gameView')) }}
     </div>

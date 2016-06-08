@@ -16,7 +16,7 @@ header {
 }
 .helpBtn{
     clear: both;
-    float: left;
+    /* float: left;*/
 }
 
 h1, h2, h3 {
@@ -43,6 +43,23 @@ header #form {
 
 }
 
+/*aside left: affichage scores */
+
+#winners{
+    border-collapse: collapse;
+    text-align: center;
+    position : absolute;
+    width : 200px;
+    margin-left : 20px;
+    top:240px;
+    left:30px;
+    font-family : Georgia;
+
+}
+caption{
+    height: 40px;
+    font-weight: bold;
+}
 /*Body*/
 
 body {

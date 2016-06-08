@@ -36,6 +36,13 @@ class User {
     private $password;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_winned_game", type="integer")
+     */
+    protected $nbWinnedGame;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="users")
      * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
      */
@@ -120,6 +127,27 @@ class User {
      */
     public function getGame() {
         return $this->game;
+    }
+
+    /**
+     * Set nb_winned_game
+     *
+     * @param integer $nbWinnedGame
+     * @return User
+     */
+    public function setNbWinnedGame($nbWinnedGame) {
+        $this->nbWinnedGame = $nbWinnedGame;
+
+        return $this;
+    }
+
+    /**
+     * Get nb_winned_game
+     *
+     * @return integer
+     */
+    public function getNbWinnedGame() {
+        return $this->nbWinnedGame;
     }
 
 }

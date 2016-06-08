@@ -198,9 +198,7 @@ class Board {
         }
     }
 
-    public function winnerAction() {
-
-    }
+  
 
     public function doAction($l, $c) {
         $bSuccess = 'error';

@@ -28,7 +28,16 @@ class GameController extends Controller {
             $oSession->set('game', $oGame);
         }
 
-        return array();
+        // TODO
+        $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
+        $aWinners = $repo->findBy(
+                array(), // criterias
+                array('nbWinnedGame' => 'desc'), // Tri
+                10 // Limite
+        );
+        return array(
+            'winners' => $aWinners,
+        );
     }
 
     /**
