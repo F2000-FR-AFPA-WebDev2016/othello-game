@@ -12,7 +12,7 @@
         <img id="logo" src="{{asset("bundles/afpaothellogame/images/4pions.jpg")}}"/>
         <h1 id="othello">Othello</h1>
         <div id="form">
-            {%if app.request.session.get('oUser') is not null %}
+            {% if app.request.session.get('oUser') is not null %}
                 Connecté : {{ app.request.session.get('oUser').login}}
                 <a href="{{ path('logout')}}"><button type="button" class="button">Déconnexion</button></a>
             {% else %}
@@ -34,7 +34,20 @@
 
 {% block javascripts %}{% endblock %}
 <script type="text/javascript" src="{{asset ('bundles/afpaothellogame/js/jquery-2.2.4.min.js')}}"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    //gérer l'url : 
+    var baseUrl = "{{ app.request.getBaseURL() }}";
+    var baseUrlParts = baseUrl.split('/');
+    //retirer le dernier element de l'url : app_dev.php : .pop
+    //derniere cellule vide => faire pop
+    // pour gerer si quelu'un ajoute un "/" :
+    if (baseUrlParts[baseUrlParts.length - 1] == '') {
+        baseUrlParts.pop();
+    }
+    //Ajout / a la fin de la chaine de cara
+    var START_URL = baseUrlParts.join('/');
+</script>
 <script type="text/javascript" src="{{asset ('bundles/afpaothellogame/js/functions.js')}}"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </body>
 </html>

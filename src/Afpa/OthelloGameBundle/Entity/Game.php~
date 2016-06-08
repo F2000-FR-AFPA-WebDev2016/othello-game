@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Game {
 
+    const STATUS_WAITING = 0;
+    const STATUS_STARTED = 1;
+    const STATUS_ENDED = 2;
+
     /**
      * @var integer
      *
@@ -19,35 +23,35 @@ class Game {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=150)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_date", type="datetimetz")
      */
-    private $createdDate;
+    protected $createdDate;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="data", type="string", length=255, nullable=true)
+     * @ORM\Column(name="data", type="text", nullable=true)
      */
-    private $data;
+    protected $data;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="end_game", type="boolean")
+     * @ORM\Column(name="status", type="integer")
      */
-    private $endGame;
+    protected $status;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="game")
@@ -63,88 +67,91 @@ class Game {
         return $this->id;
     }
 
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+
     /**
-     * Set partyName
+     * Constructor
+     */
+    public function __construct() {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set name
      *
-     * @param string $partyName
+     * @param string $name
      * @return Game
      */
-    public function setPartyName($partyName) {
-        $this->partyName = $partyName;
+    public function setName($name) {
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get partyName
+     * Get name
      *
      * @return string
      */
-    public function getPartyName() {
-        return $this->partyName;
+    public function getName() {
+        return $this->name;
     }
 
     /**
-     * Set createParty
+     * Set createdDate
      *
-     * @param \DateTime $createParty
+     * @param \DateTime $createdDate
      * @return Game
      */
-    public function setCreateParty($createParty) {
-        $this->createParty = $createParty;
+    public function setCreatedDate($createdDate) {
+        $this->createdDate = $createdDate;
 
         return $this;
     }
 
     /**
-     * Get createParty
+     * Get createdDate
      *
      * @return \DateTime
      */
-    public function getCreateParty() {
-        return $this->createParty;
+    public function getCreatedDate() {
+        return $this->createdDate;
     }
 
     /**
-     * Set data
+     * Add users
      *
-     * @param string $data
+     * @param \Afpa\OthelloGameBundle\Entity\User $users
      * @return Game
      */
-    public function setData($data) {
-        $this->data = $data;
+    public function addUser(\Afpa\OthelloGameBundle\Entity\User $users) {
+        $this->users[] = $users;
 
         return $this;
     }
 
     /**
-     * Get data
+     * Remove users
      *
-     * @return string
+     * @param \Afpa\OthelloGameBundle\Entity\User $users
      */
-    public function getData() {
-        return $this->data;
+    public function removeUser(\Afpa\OthelloGameBundle\Entity\User $users) {
+        $this->users->removeElement($users);
     }
 
     /**
-     * Set endGame
+     * Get users
      *
-     * @param boolean $endGame
-     * @return Game
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setEndGame($endGame) {
-        $this->endGame = $endGame;
-
-        return $this;
-    }
-
-    /**
-     * Get endGame
-     *
-     * @return boolean
-     */
-    public function getEndGame() {
-        return $this->endGame;
+    public function getUsers() {
+        return $this->users;
     }
 
 }

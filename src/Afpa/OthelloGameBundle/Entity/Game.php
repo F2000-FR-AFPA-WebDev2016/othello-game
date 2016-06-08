@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Game {
 
+    const STATUS_WAITING = 0;
+    const STATUS_STARTED = 1;
+    const STATUS_ENDED = 2;
+
     /**
      * @var integer
      *
@@ -36,18 +40,18 @@ class Game {
     protected $createdDate;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="data", type="string", length=255, nullable=true)
+     * @ORM\Column(name="data", type="text", nullable=true)
      */
     protected $data;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="end_game", type="boolean")
+     * @ORM\Column(name="status", type="integer")
      */
-    protected $endGame;
+    protected $status;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="game")
@@ -63,46 +67,12 @@ class Game {
         return $this->id;
     }
 
-    /**
-     * Set data
-     *
-     * @param string $data
-     * @return Game
-     */
-    public function setData($data) {
-        $this->data = $data;
-
-        return $this;
+    public function getStatus() {
+        return $this->status;
     }
 
-    /**
-     * Get data
-     *
-     * @return string
-     */
-    public function getData() {
-        return $this->data;
-    }
-
-    /**
-     * Set endGame
-     *
-     * @param boolean $endGame
-     * @return Game
-     */
-    public function setEndGame($endGame) {
-        $this->endGame = $endGame;
-
-        return $this;
-    }
-
-    /**
-     * Get endGame
-     *
-     * @return boolean
-     */
-    public function getEndGame() {
-        return $this->endGame;
+    public function setStatus($status) {
+        $this->status = $status;
     }
 
     /**
@@ -152,6 +122,27 @@ class Game {
      */
     public function getCreatedDate() {
         return $this->createdDate;
+    }
+
+    /**
+     * Set data
+     *
+     * @param string $data
+     * @return Game
+     */
+    public function setData($data) {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * Get data
+     *
+     * @return string
+     */
+    public function getData() {
+        return $this->data;
     }
 
     /**

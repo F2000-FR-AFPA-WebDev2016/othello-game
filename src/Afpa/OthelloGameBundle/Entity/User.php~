@@ -97,6 +97,27 @@ class User {
         return $this->password == $password;
     }
 
-}
 
-?>
+    /**
+     * Set game
+     *
+     * @param \Afpa\OthelloGameBundle\Entity\Game $game
+     * @return User
+     */
+    public function setGame(\Afpa\OthelloGameBundle\Entity\Game $game = null)
+    {
+        $this->game = $game;
+    
+        return $this;
+    }
+
+    /**
+     * Get game
+     *
+     * @return \Afpa\OthelloGameBundle\Entity\Game 
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+}

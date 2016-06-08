@@ -2,6 +2,8 @@
 
 namespace Afpa\OthelloGameBundle\Model;
 
+use Afpa\OthelloGameBundle\Entity\Game;
+
 /**
  * Board
  */
@@ -13,6 +15,8 @@ class Board {
     protected $playerTurn;
     protected $scoreWhite;
     protected $scoreBlack;
+    protected $playerBlack;
+    protected $playerWhite;
 
     public function __construct() {
 // initialisation du plateau
@@ -246,6 +250,15 @@ class Board {
         //2-Plus de place sur board $aBoard completed (on compte les pions des 2 joueurs)
         if (count($this->aPossibleCases) == 0 || $this->scoreWhite + $this->scoreBlack == 64) {
             return true;
+        }
+    }
+
+    public function setPlayers(Game $oGame) {
+        $aPlayers = $oGame->getUsers()->toArray();
+        if (count($aPlayers) == 2) {
+            shuffle($aPlayers);
+            $playerBlack = $aPlayers[0]->getId();
+            $playerWhite = $aPlayers[1]->getId();
         }
     }
 
