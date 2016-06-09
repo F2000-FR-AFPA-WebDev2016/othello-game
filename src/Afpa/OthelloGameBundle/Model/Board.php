@@ -202,8 +202,6 @@ class Board {
         }
     }
 
-  
-
     public function doAction($l, $c) {
         $bSuccess = 'error';
 
@@ -255,8 +253,8 @@ class Board {
         $aPlayers = $oGame->getUsers()->toArray();
         if (count($aPlayers) == 2) {
             shuffle($aPlayers);
-            $playerBlack = $aPlayers[0]->getId();
-            $playerWhite = $aPlayers[1]->getId();
+            $this->playerBlack = $aPlayers[0]->getId();
+            $this->playerWhite = $aPlayers[1]->getId();
         }
     }
 
@@ -277,6 +275,23 @@ class Board {
         } else {
             return 'Le joueur noir a gagné';
         }
+    }
+
+    public function getWinnerIds() {
+        $aWinners = array();
+
+        if ($this->playerWhite != null && $this->playerBlack != null) {
+            if ($this->scoreWhite == $this->scoreBlack) {
+                $aWinners[] = $this->playerWhite;
+                $aWinners[] = $this->playerBlack;
+            } elseif ($this->scoreWhite > $this->scoreBlack) {
+                $aWinners[] = $this->playerWhite;
+            } else {
+                $aWinners[] = $this->playerBlack;
+            }
+        }
+
+        return $aWinners;
     }
 
     public function getScoreBlack() {

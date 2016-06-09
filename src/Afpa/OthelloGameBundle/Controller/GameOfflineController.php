@@ -2,15 +2,12 @@
 
 namespace Afpa\OthelloGameBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Afpa\OthelloGameBundle\Model\Board;
-use Afpa\OthelloGameBundle\Entity\User;
-use Afpa\OthelloGameBundle\Entity\Game;
 
 class GameOfflineController extends Controller {
 
@@ -88,7 +85,7 @@ class GameOfflineController extends Controller {
     }
 
     /**
-     * @Route("/game/reset")
+     * @Route("/game/reset", name="reset_session")
      * @Template()
      */
     public function resetAction(Request $request) {
