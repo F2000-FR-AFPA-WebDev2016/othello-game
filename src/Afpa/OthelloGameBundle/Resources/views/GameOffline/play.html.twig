@@ -4,36 +4,26 @@
 
 {% block body %}
     <div>
-
         <table id="winners">
-
             <caption>Meilleurs joueurs</caption>
-
-
             {% set numLigne = 1 %}
             {% for winner in winners %}
                 <tr>
                     <th>{{ numLigne }}</th>
-                    <td>
-                        {{winner.login}}
-                    </td>
-                    <td>
-                        {{winner.nbWinnedGame}}
-                    </td>
-
+                    <td>{{winner.login}}</td>
+                    <td>{{winner.nbWinnedGame}}</td>
                 </tr>
                 {% set numLigne = numLigne+1 %}
             {% endfor %}
         </table>
 
     </div>
+
     <div id="game">
         {{ render(controller('AfpaOthelloGameBundle:GameOffline:refresh')) }}
     </div>
 
-
     <div id="popup" class="ui-widget-content ui-corner-all"></div>
-
 
     <aside>
         <h3>Règles du jeu d'Othello</h3>

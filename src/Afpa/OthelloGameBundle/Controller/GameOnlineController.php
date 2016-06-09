@@ -130,9 +130,18 @@ class GameOnlineController extends Controller {
             return $this->redirect($this->generateUrl('game_list'));
         }
 
+        //Tableau : trier les 10 meilleurs joueurs par odre decroissant
+        $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
+        $aWinners = $repo->findBy(
+                array(), // criterias
+                array('nbWinnedGame' => 'desc'), // Tri
+                10 // Limite
+        );
+
         //recup id refresh
         return array(
-            'idGame' => $idGame
+            'idGame' => $idGame,
+            'winners' => $aWinners,
         );
     }
 

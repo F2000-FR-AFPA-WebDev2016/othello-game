@@ -18,7 +18,7 @@ class GameOfflineController extends Controller {
      * @Route("/", name="home")
      * @Template()
      */
-    public function homeAction(Request $request) {
+    public function playAction(Request $request) {
 //on garde en session le jeu
         $oSession = $request->getSession();
 
@@ -28,7 +28,7 @@ class GameOfflineController extends Controller {
             $oSession->set('game', $oBoard);
         }
 
-        // TODO
+        //Tableau : trier les 10 meilleurs joueurs par odre decroissant
         $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
         $aWinners = $repo->findBy(
                 array(), // criterias
