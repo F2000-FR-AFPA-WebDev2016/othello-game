@@ -18,7 +18,7 @@ class Pawn {
 
     // fct magique : __toString : methode affichage :
     public function __toString() {
-        return ($this->color == self::TYPE_WHITE ) ? 'whitepawn.jpeg' : 'blackpawn.png';
+        return ($this->color == self::TYPE_WHITE ) ? 'whitepawn.png' : 'blackpawn.png';
     }
 
     public function reverse() {
