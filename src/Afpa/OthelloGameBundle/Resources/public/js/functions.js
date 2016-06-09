@@ -55,6 +55,7 @@ $(function () {
                     refresh();
                 }
                 if (data.bEndGame) {
+                    console.log('end game');
                     displayPopupEndGame();
                 }
             }

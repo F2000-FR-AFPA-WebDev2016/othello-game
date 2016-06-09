@@ -203,6 +203,7 @@ class Board {
     }
 
     public function doAction($l, $c, $idJoueur = null) {
+
         $bSuccess = 'error';
         $bUserOk = true;
 
@@ -282,6 +283,23 @@ class Board {
         } else {
             return 'Le joueur noir a gagné';
         }
+    }
+
+    public function getWinnerIds() {
+        $aWinners = array();
+
+        if ($this->playerWhite != null && $this->playerBlack != null) {
+            if ($this->scoreWhite == $this->scoreBlack) {
+                $aWinners[] = $this->playerWhite;
+                $aWinners[] = $this->playerBlack;
+            } elseif ($this->scoreWhite > $this->scoreBlack) {
+                $aWinners[] = $this->playerWhite;
+            } else {
+                $aWinners[] = $this->playerBlack;
+            }
+        }
+
+        return $aWinners;
     }
 
     public function getScoreBlack() {

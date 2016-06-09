@@ -148,6 +148,7 @@ button.button {
     text-decoration: none;
     height : auto;
     margin : 2px;
+    border-radius: 5px 5px 5px 5px;
 }
 #popup {
     position : absolute;

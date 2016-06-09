@@ -181,6 +181,42 @@ class GameOnlineController extends Controller {
     }
 
     /**
+     * @Route("/game/end/{idGame}")
+     * @Template()
+     */
+    public function endAction(Request $request, $idGame) {
+        $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:Game');
+        $oGame = $repo->findOneBy(array(
+            'id' => $idGame,
+            'status' => Game::STATUS_STARTED
+        ));
+
+        //Si game n'est pas une instance et si la partie n'a pas commencé : tu rediriges vers game_list
+        if (!$oGame instanceof Game) {
+            return $this->redirect($this->generateUrl('game_list'));
+        }
+
+        $oBoard = unserialize($oGame->getData());
+
+        // Définir la partie comme terminée
+        $oGame->setStatus(Game::STATUS_ENDED);
+
+        // Gestion des scores
+        $em = $this->getDoctrine()->getManager();
+        $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
+        foreach ($oBoard->getWinnerIds() as $id) {
+            $oWinner = $repo->find($id);
+            $oWinner->setNbWinnedGame($oWinner->getNbWinnedGame() + 1);
+        }
+
+        $em->flush();
+
+        return array(
+            'winner' => $oBoard->getWinner(),
+        );
+    }
+
+    /**
      * @Route("/game/action/{idGame}")
      * @Template()
      */
