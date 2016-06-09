@@ -20,9 +20,9 @@
                     {% if (game_user is not null) and game_user.id == game.id %}
                         En attente de joueurs...
                     {% elseif nbJoueurs < 2 %}
-                        <a href="{{ path ('game_join', {'idGame':game.id}) }}"<button id="rejoin" class="ui-widget-content ui-corner-all"{% if not bIsConnected %}disabled{% endif %}>Rejoindre la partie</button></a>
+                        <a href="{{ path ('game_join', {'idGame':game.id}) }}"><button id="rejoin" class="ui-widget-content ui-corner-all" {% if not bIsConnected %}disabled{% endif %}>Rejoindre la partie</button></a>
                     {% else %}
-                        <a href="{{ path ('game_play', {'idGame':game.id}) }}"<button id="observation" class="ui-widget-content ui-corner-all" {% if not bIsConnected %}disabled{% endif %}>Observer la partie</button></a>
+                        <a href="{{ path ('game_play', {'idGame':game.id}) }}"><button id="observation" class="ui-widget-content ui-corner-all">Observer la partie</button></a>
                     {% endif %}
 
                 </td>

@@ -155,11 +155,17 @@ class GameOnlineController extends Controller {
         // contraire : $oGame->setData(serialize($oBoard));
         $oBoard = unserialize($oGame->getData());
 
+        // Get players
+        $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:User');
+        $oUserWhite = $repo->find($oBoard->getPlayerWhite());
+        $oUserBlack = $repo->find($oBoard->getPlayerBlack());
 
         return array(
             'idGame' => $idGame,
             'board' => $oBoard->getBoard(),
             'player' => $oBoard->getPlayerTurn(),
+            'playerWhite' => $oUserWhite->getLogin(),
+            'playerBlack' => $oUserBlack->getLogin(),
             'scoreblack' => $oBoard->getScoreBlack(),
             'scorewhite' => $oBoard->getScoreWhite(),
         );
@@ -206,6 +212,8 @@ class GameOnlineController extends Controller {
      * @Template()
      */
     public function doAction(Request $request, $idGame) {
+        $oSession = $request->getSession();
+
         $repo = $this->getDoctrine()->getRepository('AfpaOthelloGameBundle:Game');
         $oGame = $repo->findOneBy(array(
             'id' => $idGame,
@@ -214,14 +222,18 @@ class GameOnlineController extends Controller {
 
         //Si game n'est pas une instance et si la partie n'a pas commencé : tu rediriges vers game_list
         if (!$oGame instanceof Game) {
-            return $this->redirect($this->generateUrl('game_list'));
+            return new JsonResponse();
+        }
+
+        if (!$oSession->get('oUser', null) instanceof User) {
+            return new JsonResponse();
         }
 
         $l = $request->get('l');
         $c = $request->get('c');
 
         $oBoard = unserialize($oGame->getData());
-        $aData = $oBoard->doAction($l, $c);
+        $aData = $oBoard->doAction($l, $c, $oSession->get('oUser')->getId());
         $oGame->setData(serialize($oBoard));
 
         $this->getDoctrine()->getManager()->flush();

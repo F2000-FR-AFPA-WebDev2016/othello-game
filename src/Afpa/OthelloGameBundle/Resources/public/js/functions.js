@@ -66,7 +66,7 @@ $(function () {
         url = START_URL + "/game/refresh";
         idGame = getGameId();
         if (idGame) {
-            url += "/" + idGame;
+            url += '/' + idGame;
         }
 
         $.ajax({
@@ -93,7 +93,7 @@ $(function () {
         url = START_URL + "/game/reset";
         idGame = getGameId();
         if (idGame) {
-            url += "/" + idGame;
+            url += '/' + idGame;
         }
 
         $.ajax({
@@ -126,4 +126,9 @@ $(function () {
     });
 
     doAction(-1, -1);
+
+    // auto-refresh sur la partie en ligne :
+    if (getGameId()) {
+        setInterval(refresh, 2000);
+    }
 });

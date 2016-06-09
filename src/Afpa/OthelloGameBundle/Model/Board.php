@@ -202,10 +202,18 @@ class Board {
         }
     }
 
-    public function doAction($l, $c) {
-        $bSuccess = 'error';
+    public function doAction($l, $c, $idJoueur = null) {
 
-        if ($this->validPosition($l, $c) && !$this->aBoard[$l][$c] instanceof Pawn &&
+        $bSuccess = 'error';
+        $bUserOk = true;
+
+        // TODO verif id joueur => idplayerblack/white sinon status errors
+        if ($idJoueur != null) {
+            $iUserValid = ($this->playerTurn == Pawn::TYPE_WHITE) ? $this->playerWhite : $this->playerBlack;
+            $bUserOk = ($iUserValid == $idJoueur);
+        }
+
+        if ($bUserOk && $this->validPosition($l, $c) && !$this->aBoard[$l][$c] instanceof Pawn &&
                 !$this->checkEndGame()) {
             if ($this->possibleClick($l, $c)) {
                 $this->aBoard[$l][$c] = new Pawn($this->playerTurn);
@@ -310,6 +318,22 @@ class Board {
 
     public function setBoard($aBoard) {
         $this->aBoard = $aBoard;
+    }
+
+    public function getPlayerBlack() {
+        return $this->playerBlack;
+    }
+
+    public function getPlayerWhite() {
+        return $this->playerWhite;
+    }
+
+    public function setPlayerBlack($playerBlack) {
+        $this->playerBlack = $playerBlack;
+    }
+
+    public function setPlayerWhite($playerWhite) {
+        $this->playerWhite = $playerWhite;
     }
 
 }
